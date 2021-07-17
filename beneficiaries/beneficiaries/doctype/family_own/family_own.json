@@ -1,0 +1,36 @@
+{
+ "creation": "2021-07-05 13:14:00.324566",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "own",
+  "note"
+ ],
+ "fields": [
+  {
+   "fieldname": "own",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0645\u0645\u062a\u0644\u0643",
+   "options": "\u0633\u064a\u0627\u0631\u0629\n\u0628\u0627\u0635\n\u0645\u062d\u0644\n\u0628\u064a\u062a\n\u0644\u0627 \u064a\u0648\u062c\u062f\n\u0623\u062e\u0631\u0649"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a"
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-07-11 11:16:43.457380",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Family own",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

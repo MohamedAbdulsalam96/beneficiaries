@@ -1,0 +1,56 @@
+{
+ "autoname": "field:beneficiary",
+ "creation": "2021-06-22 10:04:36.509543",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "beneficiary",
+  "date_of_last_decision",
+  "date_of_renewal"
+ ],
+ "fields": [
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "label": "Beneficiary",
+   "options": "Beneficiary Family Member",
+   "unique": 1
+  },
+  {
+   "fieldname": "date_of_last_decision",
+   "fieldtype": "Date",
+   "label": "Date of Last Decision"
+  },
+  {
+   "default": "Now",
+   "fieldname": "date_of_renewal",
+   "fieldtype": "Date",
+   "label": "Date of Renewal"
+  }
+ ],
+ "modified": "2021-06-30 09:02:42.890147",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Aid Renewal",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "beneficiary",
+ "track_changes": 1
+}

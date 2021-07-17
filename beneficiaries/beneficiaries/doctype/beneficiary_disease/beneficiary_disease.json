@@ -1,0 +1,46 @@
+{
+ "autoname": "field:disease",
+ "creation": "2021-06-23 09:52:19.606081",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "disease",
+  "type",
+  "treatment_cost"
+ ],
+ "fields": [
+  {
+   "fieldname": "disease",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Disease",
+   "options": "Disease",
+   "unique": 1
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "\u0645\u0632\u0645\u0646\n\u0639\u0627\u0631\u0636"
+  },
+  {
+   "fieldname": "treatment_cost",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Treatment Cost"
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-06-23 10:04:28.624137",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Beneficiary Disease",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

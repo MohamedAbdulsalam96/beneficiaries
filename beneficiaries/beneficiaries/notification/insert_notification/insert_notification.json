@@ -1,0 +1,26 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.gender==\"\u0630\u0643\u0631\"",
+ "creation": "2021-07-11 16:39:01.682348",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Beneficiary Request",
+ "enabled": 1,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Dear, Officer\n\nPlease find the new request for {{doc.beneficiary_name}}",
+ "modified": "2021-07-11 16:45:01.016851",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Insert Notification",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "email_by_role": "Complaints Officer"
+  }
+ ],
+ "subject": "{{doc.beneficiary_name}}"
+}

@@ -1,0 +1,203 @@
+{
+ "autoname": "naming_series:",
+ "creation": "2021-06-22 10:29:49.895547",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "beneficiary_information_section",
+  "beneficiary_family_member",
+  "beneficiary_request",
+  "column_break_3",
+  "status",
+  "beneficiary_family_members_section",
+  "get_beneficiary_family_members",
+  "number_of_members_in_need",
+  "members",
+  "section_break_10",
+  "total_of_fees",
+  "total_of_obligations",
+  "column_break_13",
+  "rent_base",
+  "live_base",
+  "beneficiary_decision_section",
+  "aids",
+  "aid_approval",
+  "display",
+  "transfer_section",
+  "employee",
+  "importance",
+  "column_break_21",
+  "reason",
+  "committee_notes_section",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "beneficiary_information_section",
+   "fieldtype": "Section Break",
+   "label": "\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f"
+  },
+  {
+   "fetch_from": "beneficiary_family_member.beneficiary",
+   "fieldname": "beneficiary_request",
+   "fieldtype": "Link",
+   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u062a\u0642\u062f\u064a\u0645 \u0627\u0644\u0637\u0644\u0628",
+   "options": "Beneficiary Request"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "beneficiary_family_members_section",
+   "fieldtype": "Section Break",
+   "label": "\u0623\u0641\u0631\u0627\u062f \u0623\u0633\u0631\u0629 \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f"
+  },
+  {
+   "fieldname": "members",
+   "fieldtype": "Table",
+   "label": "\u0627\u0644\u0623\u0641\u0631\u0627\u062f",
+   "options": "Family Members Info"
+  },
+  {
+   "fieldname": "number_of_members_in_need",
+   "fieldtype": "Int",
+   "label": "\u0639\u062f\u062f \u0623\u0641\u0631\u0627\u062f \u0627\u0644\u0623\u0633\u0631\u0629"
+  },
+  {
+   "fieldname": "total_of_obligations",
+   "fieldtype": "Currency",
+   "label": "\u0627\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u0623\u0644\u062a\u0632\u0627\u0645\u0627\u062a"
+  },
+  {
+   "fieldname": "rent_base",
+   "fieldtype": "Currency",
+   "label": "\u0642\u0627\u0639\u062f\u0629 \u0627\u0644\u0623\u062c\u0631\u0629"
+  },
+  {
+   "fieldname": "live_base",
+   "fieldtype": "Currency",
+   "label": "\u0642\u0627\u0639\u062f\u0629 \u0627\u0644\u0623\u0639\u0627\u0634\u0629"
+  },
+  {
+   "fieldname": "total_of_fees",
+   "fieldtype": "Currency",
+   "label": "\u0627\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u062f\u062e\u0644"
+  },
+  {
+   "fieldname": "beneficiary_decision_section",
+   "fieldtype": "Section Break",
+   "label": "\u0642\u0631\u0627\u0631 \u0627\u0644\u0644\u062c\u0646\u0629 \u0628\u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0627\u062a"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "\u0627\u0644\u0633\u0628\u0628"
+  },
+  {
+   "fieldname": "importance",
+   "fieldtype": "Select",
+   "label": "\u0627\u0644\u0623\u0647\u0645\u064a\u0629",
+   "options": "\u0637\u0627\u0631\u0626\n\u0639\u0627\u062c\u0644\n\u0639\u0627\u062f\u064a"
+  },
+  {
+   "fieldname": "committee_notes_section",
+   "fieldtype": "Section Break",
+   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0644\u062c\u0646\u0629"
+  },
+  {
+   "fieldname": "beneficiary_family_member",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u062a\u0641\u0635\u064a\u0644\u064a\u0629 \u0644\u0644\u0645\u0633\u062a\u0641\u064a\u062f",
+   "options": "Beneficiary Family Member"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "BEN-DEC-.YYYY.-"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0645\u0644\u0641 \u0645\u062d\u0627\u0644 \u0627\u0644\u0649",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "aids",
+   "fieldtype": "Table",
+   "label": "\u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0627\u062a",
+   "options": "Aid Details"
+  },
+  {
+   "fieldname": "transfer_section",
+   "fieldtype": "Section Break",
+   "label": "\u0627\u0644\u0625\u062d\u0627\u0644\u0627\u062a"
+  },
+  {
+   "fieldname": "get_beneficiary_family_members",
+   "fieldtype": "Button",
+   "label": "\u0639\u0631\u0636 \u0623\u0641\u0631\u0627\u062f \u0627\u0644\u0623\u0633\u0631\u0629"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "\u0627\u0644\u0645\u0644\u0627\u062d\u0638\u0627\u062a"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break",
+   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0645\u0639\u064a\u0634\u0629"
+  },
+  {
+   "fieldname": "column_break_13",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_21",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "\u0627\u0644\u062d\u0627\u0644\u0629",
+   "options": "\u062c\u0627\u0631\u064a \u0627\u0644\u0635\u0631\u0641\n\u0645\u0648\u0642\u0641\u0629"
+  },
+  {
+   "fieldname": "aid_approval",
+   "fieldtype": "Button",
+   "label": "\u0627\u0639\u062a\u0645\u0627\u062f \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629"
+  },
+  {
+   "fieldname": "display",
+   "fieldtype": "Table",
+   "label": "\u0627\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0627\u062a ",
+   "options": "Display Aids"
+  }
+ ],
+ "modified": "2021-06-30 09:30:27.615609",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Beneficiary Decision",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

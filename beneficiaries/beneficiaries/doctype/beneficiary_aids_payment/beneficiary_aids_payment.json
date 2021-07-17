@@ -1,0 +1,111 @@
+{
+ "autoname": "naming_series:",
+ "creation": "2021-06-29 10:00:39.435666",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "beneficiary_family_member",
+  "beneficiary_name",
+  "aid_entry",
+  "id_number",
+  "aid_type",
+  "column_break_5",
+  "type",
+  "amount",
+  "date",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "beneficiary_family_member",
+   "fieldtype": "Link",
+   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f \u0627\u0644\u0623\u0633\u0627\u0633\u064a\u0629",
+   "options": "Beneficiary"
+  },
+  {
+   "fetch_from": "beneficiary_family_member.beneficiary_name",
+   "fieldname": "beneficiary_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f"
+  },
+  {
+   "fieldname": "aid_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0646\u0648\u0639 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
+   "options": "Aid Type"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0646\u0648\u0639"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0645\u0628\u0644\u063a"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0635\u0631\u0641"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Data",
+   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a"
+  },
+  {
+   "fieldname": "id_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0631\u0642\u0645 \u0627\u0644\u0647\u0648\u064a\u0629"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "BEN-LOG-.YYYY.-"
+  },
+  {
+   "fieldname": "aid_entry",
+   "fieldtype": "Link",
+   "label": "aid_entry",
+   "options": "Beneficiary Aids Entry"
+  }
+ ],
+ "modified": "2021-07-11 21:40:36.257826",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Beneficiary Aids Payment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "beneficiary_name",
+ "track_changes": 1
+}

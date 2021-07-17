@@ -1,0 +1,104 @@
+{
+ "creation": "2021-07-04 09:09:32.308286",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "beneficiary",
+  "beneficiary_account",
+  "aid",
+  "type",
+  "item_account",
+  "column_break_7",
+  "exchange_date",
+  "amount",
+  "cost_center",
+  "project",
+  "activity"
+ ],
+ "fields": [
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f",
+   "options": "Beneficiary"
+  },
+  {
+   "fetch_from": "beneficiary.beneficiary_account",
+   "fieldname": "beneficiary_account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u062d\u0633\u0627\u0628 \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f",
+   "options": "Account"
+  },
+  {
+   "fieldname": "aid",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
+   "options": "Item"
+  },
+  {
+   "fieldname": "item_account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u062d\u0633\u0627\u0628 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
+   "options": "Account"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0645\u0628\u0644\u063a"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0645\u0631\u0643\u0632 \u0627\u0644\u062a\u0643\u0644\u0641\u0629",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0645\u0634\u0631\u0648\u0639",
+   "options": "Project"
+  },
+  {
+   "fieldname": "activity",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u0646\u0634\u0627\u0637",
+   "options": "Activity"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "\u0627\u0644\u0646\u0648\u0639",
+   "options": "\u0646\u0642\u062f\u064a\n\u0639\u064a\u0646\u064a"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "exchange_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0635\u0631\u0641"
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-07-16 12:16:08.017774",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Aids Entry Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

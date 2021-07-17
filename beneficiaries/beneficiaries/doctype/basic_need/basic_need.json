@@ -1,0 +1,50 @@
+{
+ "allow_rename": 1,
+ "autoname": "field:needs",
+ "creation": "2021-06-15 13:33:00.558162",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "needs",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "needs",
+   "fieldtype": "Data",
+   "label": "\u0627\u0644\u0625\u062d\u062a\u064a\u0627\u062c",
+   "unique": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a"
+  }
+ ],
+ "modified": "2021-07-11 10:01:25.267800",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Basic Need",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "needs",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "needs",
+ "track_changes": 1
+}
