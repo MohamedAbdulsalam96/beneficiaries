@@ -17,7 +17,7 @@ frappe.ready(function() {
 		frappe.web_form.doc['fees'] = data.fees;
 		
 		frappe.web_form.doc['obligation'] = data.obligation;
-
+		frappe.web_form.doc['family_own'] = data.family_own;
 		  
 		return true;
 	 };

@@ -14,7 +14,7 @@ frappe.ui.form.on('Beneficiary Request', {
 		
 			if(frm.is_new()||frm.doc.inserted==true) {
 				frm.page.clear_primary_action();}
-			else{
+			else if (frm.doc.employee==true){
 			frm.add_custom_button(__("Add To Beneficiaries"), function() {
 				add_to_beneficiaries(frm);
 			}).addClass("btn-primary");}
@@ -91,15 +91,6 @@ frappe.ui.form.on('Fee Type', {
   }
 })
 
-// frappe.ui.form.on('Identification Type', {
-// 	date_of_issue:function(frm,cdt,cdn){
-// 		frm.events.validate_id(frm);
-		
-//   },
-//   date_of_expired:function(frm,cdt,cdn){
-// 	frm.events.validate_id(frm);
-// }
-// })
 
 frappe.ui.form.on('Beneficiary Obligation', {
 	amount:function(frm,cdt,cdn){
@@ -109,18 +100,6 @@ frappe.ui.form.on('Beneficiary Obligation', {
   }
 })
 
-// var set_deserve=function(frm,cdt,cdn){
-//   var base=0;
-// var f= frm.doc.fee_in_year;
-// var ob=frm.doc.obligations_total;
-// var family=frm.doc.number_of_needed_members_in_family;
-// base=flt(f-ob)/family;
-//  if (base<100 && frm.doc.territory=="العنيزة")
-//  {
-// 	frm.doc.deserve_according_to_base=true;
-//  }
-  
-// }
 
 
 var set_total_fees=function(frm,cdt,cdn){
@@ -128,10 +107,10 @@ var set_total_fees=function(frm,cdt,cdn){
 	  $.each(frm.doc.fees,function(i,row)
 	  {   var m=row.fee_in_month;
 		  var y=row.fee_in_year;
-		  if (m>0)
-		  row.fee_in_year=m*12;
-		 else if(y>0) 
-		  row.fee_in_month=y/12;
+		//   if (m>0)
+		//   row.fee_in_year=m*12;
+		//  else if(y>0) 
+		//   row.fee_in_month=y/12;
 		  f=f+row.fee_in_year;
 		  frm.refresh();
 	  })

@@ -246,7 +246,7 @@
   {
    "fieldname": "territory",
    "fieldtype": "Link",
-   "label": "\u0627\u0644\u0645\u0646\u0637\u0642\u0629",
+   "label": "\u0627\u0644\u0645\u062f\u064a\u0646\u0629",
    "options": "Territory"
   },
   {
@@ -278,9 +278,9 @@
   },
   {
    "fieldname": "address",
-   "fieldtype": "Select",
-   "label": "\u0627\u0644\u062d\u0627\u0631\u0629",
-   "options": "\u062d\u0627\u0631\u0629 1\n\u062d\u0627\u0631\u0629 2\n\u062d\u0627\u0631\u0629 3"
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u062d\u064a",
+   "options": "Beneficiary Address"
   },
   {
    "fieldname": "fee_total",
@@ -349,7 +349,7 @@
    "fieldtype": "Section Break"
   }
  ],
- "modified": "2021-07-11 21:35:16.274554",
+ "modified": "2021-08-02 15:27:00.219541",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Beneficiary Request",

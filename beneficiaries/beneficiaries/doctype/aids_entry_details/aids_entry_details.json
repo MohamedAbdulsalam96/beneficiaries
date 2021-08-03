@@ -4,16 +4,51 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_1",
   "beneficiary",
   "beneficiary_account",
-  "aid",
+  "item_code",
   "type",
+  "item_name",
+  "brand",
+  "column_break_11",
+  "item_group",
   "item_account",
-  "column_break_7",
   "exchange_date",
+  "uom",
+  "conversion_factor",
+  "stock_qty",
+  "quantity_and_rate_section",
+  "qty",
+  "rate",
+  "cb",
+  "stock_uom",
   "amount",
+  "valuation_rate",
+  "section_break_24",
+  "weight_per_unit",
+  "total_weight",
+  "column_break_25",
+  "weight_uom",
+  "warehouse_section",
+  "warehouse",
+  "quality_inspection",
+  "batch_no",
+  "column_break_31",
+  "serial_no",
+  "accounting_section",
+  "income_account",
+  "expense_head",
+  "column_break_7",
+  "is_fixed_asset",
+  "asset_location",
+  "asset_category",
+  "reference_section",
+  "bom",
+  "accounting_dimensions_section",
   "cost_center",
   "project",
+  "column_break_45",
   "activity"
  ],
  "fields": [
@@ -33,13 +68,6 @@
    "options": "Account"
   },
   {
-   "fieldname": "aid",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "\u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
-   "options": "Item"
-  },
-  {
    "fieldname": "item_account",
    "fieldtype": "Link",
    "in_list_view": 1,
@@ -50,7 +78,8 @@
    "fieldname": "amount",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "\u0627\u0644\u0645\u0628\u0644\u063a"
+   "label": "\u0627\u0644\u0645\u0628\u0644\u063a",
+   "options": "currency"
   },
   {
    "fieldname": "cost_center",
@@ -88,10 +117,203 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0635\u0631\u0641"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "label": "Quantity"
+  },
+  {
+   "fetch_from": "item_code.stock_uom",
+   "fieldname": "stock_uom",
+   "fieldtype": "Data",
+   "label": "Stock UOM"
+  },
+  {
+   "fieldname": "item_group",
+   "fieldtype": "Link",
+   "label": "Item Group",
+   "options": "Item Group"
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item name"
+  },
+  {
+   "fetch_from": "item_code.stock_uom",
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "brand",
+   "fieldtype": "Data",
+   "label": "Brand"
+  },
+  {
+   "fieldname": "conversion_factor",
+   "fieldtype": "Float",
+   "label": "UOM Conversion Factor"
+  },
+  {
+   "fieldname": "stock_qty",
+   "fieldtype": "Float",
+   "label": "Stock Qty"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Rate",
+   "options": "currency"
+  },
+  {
+   "fieldname": "valuation_rate",
+   "fieldtype": "Data",
+   "label": "Valuation Rate",
+   "options": "Company:company:default_currency"
+  },
+  {
+   "fieldname": "weight_per_unit",
+   "fieldtype": "Float",
+   "label": "Weight Per Unit"
+  },
+  {
+   "fieldname": "total_weight",
+   "fieldtype": "Float",
+   "label": "Total Weight"
+  },
+  {
+   "fieldname": "weight_uom",
+   "fieldtype": "Link",
+   "label": "Weight UOM",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "quality_inspection",
+   "fieldtype": "Link",
+   "label": "Quality Inspection",
+   "options": "Quality Inspection"
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "label": "Batch No",
+   "options": "Batch"
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Text",
+   "label": "Serial No",
+   "options": "serial_no_series"
+  },
+  {
+   "fieldname": "income_account",
+   "fieldtype": "Link",
+   "label": "Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "expense_head",
+   "fieldtype": "Link",
+   "label": "Expense Head",
+   "options": "Account"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_fixed_asset",
+   "fieldtype": "Check",
+   "label": "Is Fixed Asset"
+  },
+  {
+   "fieldname": "asset_location",
+   "fieldtype": "Link",
+   "label": "Asset Location",
+   "options": "Location"
+  },
+  {
+   "fetch_from": "item_code.asset_category",
+   "fieldname": "asset_category",
+   "fieldtype": "Link",
+   "label": "Asset Category",
+   "options": "Asset Category"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "quantity_and_rate_section",
+   "fieldtype": "Section Break",
+   "label": "Quantity and Rate"
+  },
+  {
+   "fieldname": "column_break_25",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "warehouse_section",
+   "fieldtype": "Section Break",
+   "label": "Warehouse"
+  },
+  {
+   "fieldname": "column_break_31",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "accounting_section",
+   "fieldtype": "Section Break",
+   "label": "Accounting"
+  },
+  {
+   "fieldname": "reference_section",
+   "fieldtype": "Section Break",
+   "label": "Reference"
+  },
+  {
+   "fieldname": "bom",
+   "fieldtype": "Link",
+   "label": "BOM",
+   "options": "BOM"
+  },
+  {
+   "fieldname": "accounting_dimensions_section",
+   "fieldtype": "Section Break",
+   "label": "Accounting Dimensions"
+  },
+  {
+   "fieldname": "section_break_1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_45",
+   "fieldtype": "Column Break"
   }
  ],
  "istable": 1,
- "modified": "2021-07-16 12:16:08.017774",
+ "modified": "2021-07-30 15:30:07.616993",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Aids Entry Details",

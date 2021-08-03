@@ -29,47 +29,16 @@ frappe.ui.form.on("Beneficiary", {
 	refresh: function(frm) 
 	{
 		
-		if(frm.is_new()) {
-			frm.page.clear_primary_action();}
-			else{
-		frm.add_custom_button(__("Add As User"), function() {
-			create_beneficiary_contact(frm);
-		}).addClass("btn-primary");}
-	
 		frappe.dynamic_link = {doc: frm.doc, fieldname: 'name', doctype: 'Beneficiary'}
-		frm.toggle_display(['address_html','contact_html'], !frm.doc.__islocal);
-
-		if(!frm.doc.__islocal) {
-			frappe.contacts.render_address_and_contact(frm);
-		
-		}
-			else {
-			frappe.contacts.clear_address_and_contact(frm);
-		}
-
-	 const create_beneficiary_contact = function (frm) {
-		 frappe.confirm(__('This will add beneficiary to Beneficaries list . Do you want to proceed?'),
-			function() {
-				frappe.call({
-					method: 'create_beneficiary_contact',
-					args: {},
-					callback: function() {frm.events.refresh(frm);
-						cur_frm.save();
-						frm.refresh();
-					frm.save();
-					if (frm.doc.is_user==1 && frm.doc.has_contact==1 && frm.doc.has_user_permission==1)
-					    cur_frm.clear_custom_buttons();
-						cur_frm.save();
-						frm.refresh();
-				},
-					doc: frm.doc,
-					
-				});
-				
-			},
-			);
-		}
-
+			frm.toggle_display(['address_html','contact_html'], !frm.doc.__islocal);
+	
+			if(!frm.doc.__islocal) {
+				frappe.contacts.render_address_and_contact(frm);
+			
+			}
+				else {
+				frappe.contacts.clear_address_and_contact(frm);
+			}
 		
 	
 	},
@@ -149,6 +118,134 @@ frappe.ui.form.on('Aid Details', {
 	 })
 
   }
+
+//   frappe.ui.form.on("Aid Details", {
+// 	uom:function(frm, cdt, cdn){
+// 		var u = locals[cdt][cdn];
+// 		if(u.uom == null){return;}
+// 		frappe.call({
+// 			method: "beneficiaries.beneficiaries.doctype.beneficiary.beneficiary.get_conversion_factor",
+// 			args: {
+// 				item_code: u.item_code,
+// 				uom : u.uom,
+// 			},
+// 			freeze: true,
+// 			callback: function(msg) {
+// 				if(!msg || !msg.message){msg.message = 1;}
+// 				u.conversion_factor = msg.message;
+// 				u.stock_qty = flt(u.qty) * flt(msg.message);
+// 				frm.refresh_fields();			
+// 			}
+// 		}); 
+// 	  },
+// // 	  download_pdf: function(frm, cdt, cdn) {
+// // 		var child = locals[cdt][cdn]
+
+// // 		var w = window.open(
+// // 			frappe.urllib.get_full_url("/api/method/erpnext.buying.doctype.request_for_quotation.request_for_quotation.get_pdf?"
+// // 			+"doctype="+encodeURIComponent(frm.doc.doctype)
+// // 			+"&name="+encodeURIComponent(frm.doc.name)
+// // 			+"&supplier_idx="+encodeURIComponent(child.idx)
+// // 			+"&no_letterhead=0"));
+// // 		if(!w) {
+// // 			frappe.msgprint(__("Please enable pop-ups")); return;
+// // 		}
+// // 	},
+//    });
+
+// frappe.ui.form.on('Aid Details', 'item_code', function(frm, cdt, cdn) {
+// 	if (!frm.doc.company){
+// 		frm.clear_table("items");
+// 		frappe.throw({message:__("Please select a Company first."), title: __("Mandatory")});
+// 	}
+
+// 	var u = locals[cdt][cdn];
+// 	if(!u || !u.item_code)
+// 		return;
+
+// 	frappe.call({
+// 		method: "beneficiaries.beneficiaries.doctype.beneficiary.beneficiary.get_item_detail",
+// 		args: {item_code: u.item_code, is_fixed_asset: u.is_fixed_asset, asset_category: u.asset_category, 
+// 			company: frm.doc.company, type: u.type,},
+// 		freeze: true,
+// 		callback: function(msg) {
+// 			console.log(msg);
+// 			if(msg && msg.message){
+// 				u.warehouse = msg.message.warehouse;
+// 				u.income_account = msg.message.income_account;
+// 				u.expense_account = msg.message.expense_account;
+// 				if(frm.doc.type == 'Asset')
+// 					u.asset_location = msg.message.asset_location;
+// 				u.cost_center = msg.message.cost_center;
+// 				u.project = msg.message.project;
+// 				u.project_activities = msg.message.project_activities;
+// 				u.valuation_rate = msg.message.valuation_rate;
+				
+// 				frm.refresh_fields();
+// 			}			
+// 		}
+// 	}); 
+// });
+
+// frappe.ui.form.on('Aid Details', 'qty', function(frm, cdt, cdn) {
+// 	var u = locals[cdt][cdn];
+// 	u.stock_qty = flt(u.qty) * flt(u.conversion_factor);
+// 	cur_frm.cscript.update_row_amount(frm, cdt, cdn);
+// 	cur_frm.cscript.update_total(frm);
+// });
+// frappe.ui.form.on('Aid Details', 'rate', function(frm, cdt, cdn) {	
+// 	cur_frm.cscript.update_row_amount(frm, cdt, cdn);
+// 	cur_frm.cscript.update_total(frm);
+// });
+
+// cur_frm.cscript.update_row_amount = function(frm, cdt, cdn){
+// 	var u = locals[cdt][cdn];
+// 	frappe.model.set_value(u.doctype, u.name, "amount", (u.qty * u.rate));
+// }
+
+// cur_frm.cscript.update_total = function(frm){
+// 	var qty = 0;
+// 	var amount = 0;
+// 	frm.doc.items.forEach(function(d){
+// 		qty += d.qty;
+// 		amount += d.amount;
+// 	});
+		
+// 	// frm.set_value('total_qty', qty || 0);
+// 	// frm.set_value('total', amount || 0);
+// 	frm.refresh_fields();
+// }
+
+
+// frappe.ui.form.on('Beneficiary Aids Entry', {
+// // 	setup: function(frm) {
+// //     	frm.fields_dict['beneficiaries'].grid.get_field('beneficiary').get_query = function(frm, cdt, cdn) {
+// // 			var child = locals[cdt][cdn];
+// // 			return{
+// // 				filters: {
+// // 					"type": frm.type
+// // 				}
+// // 			}
+// // 	    }	   
+// // 	}
+// // })
+
+
+// frappe.ui.form.on('Beneficiary Aids Entry', {
+// 	refresh(frm) {
+// 	cur_frm.set_query("beneficiary", "beneficiaries", function(doc, cdt, cdn) {
+// 	    var d = locals[cdt][cdn];
+//     	return{
+// 	    	filters: [
+		    
+// 		    	['Beneficiary', 'type', '=', d.type]
+// 	    	]
+//             	}
+//         });
+// 	}
+// })
+
+
 
 
 

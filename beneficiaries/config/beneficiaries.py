@@ -7,6 +7,12 @@ def get_data():
 			"label": _("Initialization"),
 			"items":
 			 [
+				 {
+					"type": "doctype",
+					"name": "Beneficiary Settings",
+					"description":_("Beneficiary Settings"),
+					"onboard": 1,
+				},
 				{
 					"type": "doctype",
 					"name": "Basic Need",
