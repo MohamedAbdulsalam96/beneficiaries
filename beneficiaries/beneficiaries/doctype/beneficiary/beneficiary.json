@@ -7,18 +7,15 @@
  "field_order": [
   "beneficiary_request",
   "status",
+  "raised_by",
   "column_break_3",
   "date_of_registration",
   "company",
-  "section_break_14",
-  "is_user",
-  "column_break_21",
-  "has_contact",
-  "column_break_23",
-  "has_user_permission",
   "section_break_3",
   "beneficiary_name",
   "beneficiary_account",
+  "bank_account",
+  "account_no",
   "gender",
   "phone",
   "mobile",
@@ -36,6 +33,7 @@
   "address_html",
   "column_break_20",
   "contact_html",
+  "contact",
   "section_break_12",
   "fees",
   "fee_total",
@@ -91,13 +89,13 @@
   "return_section",
   "return",
   "employee",
-  "reason_of_return",
-  "user"
+  "reason_of_return"
  ],
  "fields": [
   {
    "fieldname": "beneficiary_request",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0637\u0644\u0628",
    "options": "Beneficiary Request",
@@ -106,6 +104,7 @@
   {
    "fieldname": "beneficiary_name",
    "fieldtype": "Data",
+   "ignore_user_permissions": 1,
    "label": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f \u0643\u0627\u0645\u0644\u0627\u064b",
    "unique": 1
   },
@@ -118,6 +117,7 @@
   {
    "fieldname": "territory",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "\u0627\u0644\u0645\u0646\u0637\u0642\u0629",
    "options": "Territory"
   },
@@ -142,12 +142,14 @@
   {
    "fieldname": "nationality",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "\u0627\u0644\u062c\u0646\u0633\u064a\u0629",
    "options": "Nationality"
   },
   {
    "fieldname": "gender",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "\u0627\u0644\u0646\u0648\u0639",
    "options": "Gender"
   },
@@ -314,38 +316,50 @@
    "options": "Aid Details"
   },
   {
+   "depends_on": "eval:doc.researcher_approve==1",
    "fieldname": "research_name",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "\u0627\u0644\u0628\u0627\u062d\u062b",
-   "options": "User"
+   "options": "User",
+   "permlevel": 1
   },
   {
    "fieldname": "researcher_notes",
    "fieldtype": "Small Text",
-   "label": " \u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0628\u0627\u062d\u062b"
+   "label": " \u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0628\u0627\u062d\u062b",
+   "permlevel": 1
   },
   {
    "default": "0",
    "fieldname": "researcher_approve",
    "fieldtype": "Check",
-   "label": "\u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0628\u0627\u062d\u062b"
+   "label": "\u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0628\u0627\u062d\u062b",
+   "permlevel": 1,
+   "read_only": 1
   },
   {
+   "depends_on": "eval:doc.auditor_approve==1",
    "fieldname": "auditor",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "\u0627\u0644\u0645\u062f\u0642\u0642",
-   "options": "User"
+   "options": "User",
+   "permlevel": 2
   },
   {
    "default": "0",
    "fieldname": "auditor_approve",
    "fieldtype": "Check",
-   "label": "\u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0645\u062f\u0642\u0642"
+   "label": "\u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0645\u062f\u0642\u0642",
+   "permlevel": 2,
+   "read_only": 1
   },
   {
    "fieldname": "auditor_notes",
    "fieldtype": "Small Text",
-   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0645\u062f\u0642\u0642"
+   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0645\u062f\u0642\u0642",
+   "permlevel": 2
   },
   {
    "collapsible": 1,
@@ -357,28 +371,34 @@
    "collapsible": 1,
    "fieldname": "committee_section",
    "fieldtype": "Section Break",
-   "label": "\u0631\u0623\u064a \u0627\u0644\u0644\u062c\u0646\u0629 "
+   "label": "\u0631\u0623\u064a \u0627\u0644\u0644\u062c\u0646\u0629 ",
+   "permlevel": 3
   },
   {
    "default": "0",
    "fieldname": "committee_approve",
    "fieldtype": "Check",
-   "label": "\u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0644\u062c\u0646\u0629"
+   "label": "\u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0644\u062c\u0646\u0629",
+   "permlevel": 3,
+   "read_only": 1
   },
   {
    "fieldname": "committee_notes",
    "fieldtype": "Small Text",
-   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0644\u062c\u0646\u0629"
+   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0644\u062c\u0646\u0629",
+   "permlevel": 3
   },
   {
    "fieldname": "aid_approval",
    "fieldtype": "Button",
-   "label": "\u0639\u0631\u0636 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0627\u062a"
+   "label": "\u0639\u0631\u0636 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0627\u062a",
+   "permlevel": 3
   },
   {
    "fieldname": "display",
    "fieldtype": "Table",
-   "options": "Display Aids"
+   "options": "Display Aids",
+   "permlevel": 3
   },
   {
    "collapsible": 1,
@@ -435,6 +455,7 @@
   {
    "fieldname": "phone",
    "fieldtype": "Data",
+   "ignore_user_permissions": 1,
    "label": "\u0627\u0644\u0647\u0627\u062a\u0641",
    "options": "Phone"
   },
@@ -478,7 +499,8 @@
   {
    "fieldname": "address",
    "fieldtype": "Data",
-   "label": "\u0627\u0644\u062d\u0627\u0631\u0629"
+   "in_list_view": 1,
+   "label": "\u0627\u0644\u062d\u064a"
   },
   {
    "fieldname": "fee_total",
@@ -510,7 +532,8 @@
   {
    "fieldname": "beneficiary_account",
    "fieldtype": "Link",
-   "label": "\u062d\u0633\u0627\u0628 \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f",
+   "ignore_user_permissions": 1,
+   "label": "\u062d\u0633\u0627\u0628 \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f\u064a\u0646",
    "options": "Account"
   },
   {
@@ -520,67 +543,39 @@
    "read_only": 1
   },
   {
-   "default": "0",
-   "fieldname": "is_user",
-   "fieldtype": "Check",
-   "label": "is user",
-   "read_only": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "has_contact",
-   "fieldtype": "Check",
-   "label": "has contact",
-   "read_only": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "has_user_permission",
-   "fieldtype": "Check",
-   "label": "has user permission",
-   "read_only": 1
-  },
-  {
-   "fieldname": "section_break_14",
-   "fieldtype": "Section Break",
-   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u062a\u062d\u0642\u0642"
-  },
-  {
-   "fieldname": "column_break_21",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_23",
-   "fieldtype": "Column Break"
-  },
-  {
    "collapsible": 1,
    "fieldname": "return_section",
    "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u0625\u062d\u0627\u0644\u0627\u062a"
+   "label": "\u0627\u0644\u0625\u062d\u0627\u0644\u0627\u062a",
+   "permlevel": 3
   },
   {
    "depends_on": "eval:doc.return==1",
    "fieldname": "employee",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "\u0625\u062d\u0627\u0644\u0629 \u0625\u0644\u0649",
-   "options": "User"
+   "options": "User",
+   "permlevel": 3
   },
   {
    "depends_on": "eval:doc.return==1",
    "fieldname": "reason_of_return",
    "fieldtype": "Data",
-   "label": "\u0633\u0628\u0628 \u0627\u0644\u0625\u062d\u0627\u0644\u0629"
+   "label": "\u0633\u0628\u0628 \u0627\u0644\u0625\u062d\u0627\u0644\u0629",
+   "permlevel": 3
   },
   {
    "default": "0",
    "fieldname": "return",
    "fieldtype": "Check",
-   "label": "\u0625\u062d\u0627\u0644\u0629 \u0627\u0644\u0645\u0644\u0641"
+   "label": "\u0625\u062d\u0627\u0644\u0629 \u0627\u0644\u0645\u0644\u0641",
+   "permlevel": 3
   },
   {
    "fieldname": "company",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Company",
    "options": "Company"
   },
@@ -591,14 +586,32 @@
    "options": "Family Members Info"
   },
   {
-   "fieldname": "user",
+   "fieldname": "bank_account",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
-   "label": "User",
-   "options": "User"
+   "label": "Bank Account",
+   "options": "Bank Account"
+  },
+  {
+   "fieldname": "account_no",
+   "fieldtype": "Data",
+   "label": "Account No"
+  },
+  {
+   "fieldname": "raised_by",
+   "fieldtype": "Data",
+   "label": "raised_by",
+   "options": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Link",
+   "label": "Contact",
+   "options": "Contact"
   }
  ],
- "modified": "2021-08-01 11:55:33.235906",
+ "modified": "2021-08-08 13:47:16.663438",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Beneficiary",
@@ -613,55 +626,35 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "set_user_permissions": 1,
    "share": 1,
    "write": 1
   },
   {
    "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
-   "role": "Guest",
-   "share": 1,
+   "role": "Accounts User",
    "write": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "permlevel": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "All",
-   "share": 1
   },
   {
    "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
    "read": 1,
-   "report": 1,
-   "role": "Customer",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
    "role": "Beneficiary",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Separation Employee",
    "share": 1,
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

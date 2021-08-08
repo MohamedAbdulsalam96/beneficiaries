@@ -13,13 +13,14 @@
   "column_break_10",
   "item_name",
   "qty",
+  "rate",
   "asset_category",
   "uom",
   "from_date",
   "to_date",
   "number_of_months",
   "frequency",
-  "cash_type",
+  "aid_type",
   "rent_number",
   "accounting_dimensions_section",
   "cost_center",
@@ -93,13 +94,6 @@
    "in_list_view": 1,
    "label": "\u0645\u0631\u0627\u062a \u0627\u0644\u0635\u0631\u0641 ",
    "options": "\u0645\u0631\u0629 \u0648\u0627\u062d\u062f\u0629\n\u0634\u0647\u0631\u064a\u0627\u064b\n\u0643\u0644 \u062b\u0644\u0627\u062b\u0629 \u0623\u0634\u0647\u0631\n\u0643\u0644 \u0633\u062a\u0629 \u0623\u0634\u0647\u0631\n\u0633\u0646\u0648\u064a\u0627\u064b"
-  },
-  {
-   "depends_on": "eval:doc.type==\"\u0646\u0642\u062f\u064a\"",
-   "fieldname": "cash_type",
-   "fieldtype": "Select",
-   "label": "\u0627\u0644\u0646\u0648\u0639",
-   "options": "\u0631\u0627\u062a\u0628\n\u0623\u062c\u0631\u0629\n\u0633\u062f\u0627\u062f \u062f\u064a\u0646\n\u0646\u0642\u062f\u064a\u0629 \u0631\u0636\u064a\u0639"
   },
   {
    "default": "0",
@@ -192,10 +186,22 @@
    "fieldtype": "Link",
    "label": "UOM",
    "options": "UOM"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "label": "Rate"
+  },
+  {
+   "depends_on": "eval:doc.type==\"\u0646\u0642\u062f\u064a\"",
+   "fieldname": "aid_type",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0646\u0648\u0639",
+   "options": "Aid Type"
   }
  ],
  "istable": 1,
- "modified": "2021-08-01 13:33:04.064582",
+ "modified": "2021-08-07 19:18:51.227887",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Aid Details",

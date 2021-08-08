@@ -18,53 +18,119 @@ from erpnext.accounts.utils import get_fiscal_year
 class BeneficiaryAidsEntry(AccountsController):
 	def validate(self):
 	
-		self.validate_item_code_and_warehouse()
-		self.set_expense_account()
-		self.set_against_expense_account()
-		self.set_against_income_account()
-		self.update_valuation_rate("items")
+		if self.type=='عيني':
+			self.validate_item_code_and_warehouse()
+			self.set_expense_account()
+			self.set_against_expense_account()
+			self.set_against_income_account()
+			self.update_valuation_rate("items")
 
 	def on_submit(self):
 		self.make_gl_entries()
+		self.update_deserve_check()
 
 	def on_cancel(self):
 		self.make_gl_entries(cancel=True)
 
+	def get_beneficiary_list(self):
+		cond = 'where ben.status=%s and dis.state=0 and det.aid_no=dis.aid_no and det.type=%s '
+		# dis.exchange_date IN (det.from_date,det.to_date) and
+		filters=["جاري الصرف",self.type]
+		if self.aid :
+			cond += ' and det.item_code=%s '
+			filters.append(self.aid)	
+		if self.project :
+			cond += ' and det.project=%s '
+			filters.append(self.project)
+		if self.aid_type :
+			cond += ' and det.aid_type=%s '
+			filters.append(self.aid_type)
+		if self.activity :
+			cond += ' and det.activity=%s '
+			filters.append(self.activity)
+		if self.cost_center :
+			cond += 'and det.cost_center=%s '
+			filters.append(self.cost_center)
+		if self.from_date :
+			cond += 'and det.from_date >= %s '
+			filters.append(self.from_date)
+			# cond += 'and dis.exchange_date IN %s '
+			# filters.append([self.from_date,self.to_date])
+		if self.to_date :
+			cond += 'and det.to_date <= %s '
+			filters.append(self.to_date)
+		"""
+			Returns list of active beneficiary based on selected criteria
+			and for which type exists
+		"""
+
+		return frappe.db.sql("""select beneficiary_name as beneficiary,ben.beneficiary_account,det.item_code ,det.type ,
+		det.item_account ,det.amount,det.cost_center,det.warehouse ,det.qty ,det.aid_type
+		,det.project ,det.activity ,det.from_date ,det.to_date ,det.asset_category 
+		,dis.exchange_date,dis.state,dis.aid_no,det.aid_no,det.uom,det.rate
+		from `tabBeneficiary` ben
+		LEFT JOIN  `tabDisplay Aids` dis 
+	    ON ben.name=dis.parent
+		LEFT JOIN `tabAid Details` det 	
+		ON ben.name = det.parent
+		
+		{0}  """.format(cond), filters, as_dict=True)
+
+	
+	def fill_beneficiary(self):			
+		beneficiaries = self.get_beneficiary_list()
+		if not beneficiaries:
+			frappe.throw(_("No beneficiaries for the mentioned type"))
+		
+		for d in beneficiaries:
+			# frappe.msgprint(d.warehouse)
+			row=self.append('items', d)
+			# row.valuation_rate=frappe.db.get_value("Item", row.get("item_code"), "valuation_rate")
+		self.number_of_beneficiaries = len(beneficiaries)
+
+
+	def update_deserve_check(self):
+		for item in self.get('items'):
+			filters=[item.beneficiary,item.exchange_date,item.item_code,item.type]
+			frappe.db.sql("""UPDATE `tabDisplay Aids` set state=1 where parent=%s and exchange_date=%s and item_code=%s and type=%s"""
+			 ,filters)
+		frappe.msgprint("done")
+
 	def validate_item_code_and_warehouse(self):
-		pass
-	# 	for d in self.get('items'):
-	# 		if not d.item_code:
-	# 			frappe.msgprint(_("Item Code required at Row No {0}").format(d.idx), raise_exception=True)
-	# 		if self.type != 'Cash' and not d.warehouse:
-	# 			frappe.throw(_("Warehouse required at Row No {0}, please set default warehouse for the item {1} for the company {2}").
-	# 				format(d.idx, d.item_code, self.company))
+	
+		for d in self.get('items'):
+			if not d.item_code:
+				frappe.msgprint(_("Item Code required at Row No {0}").format(d.idx), raise_exception=True)
+			if self.type != 'نقدي' and not d.warehouse:
+				frappe.throw(_("Warehouse required at Row No {0}, please set default warehouse for the item {1} for the company {2}").
+					format(d.idx, d.item_code, self.company))
 	
 	def set_against_income_account(self):
-		pass
-	# 	against_acc = []
-	# 	for d in self.get('items'):
-	# 		if d.income_account and d.income_account not in against_acc:
-	# 			against_acc.append(d.income_account)
-	# 	self.against_income_account = ','.join(against_acc)
+	
+		against_acc = []
+		for d in self.get('items'):
+			if d.income_account and d.income_account not in against_acc:
+				against_acc.append(d.income_account)
+		self.against_income_account = ','.join(against_acc)
 
 	def set_expense_account(self, for_validate=False):
-		pass
-	# 	warehouse_account = get_warehouse_account_map(self.company)
-	# 	stock_items = self.get_stock_items()
+		
+		warehouse_account = get_warehouse_account_map(self.company)
+		stock_items = self.get_stock_items()
 
-	# 	for item in self.get("items"):
-	# 		if not item.is_fixed_asset and item.item_code in stock_items:
-	# 			item.expense_account = warehouse_account[item.warehouse]["account"]
-	# 		elif item.is_fixed_asset and item.asset_category:
-	# 			asset_account = get_asset_category_account(asset_category=item.asset_category, \
-	# 				fieldname='fixed_asset_account', company=self.company)
-	# 			item.expense_account = asset_account
-	# 		elif not item.expense_account and for_validate:
-	# 			throw(_("Expense account is mandatory for item {0}").format(item.item_code or item.item_name))
+		for item in self.get("items"):
+			if not item.is_fixed_asset and item.item_code in stock_items:
+				item.expense_account = warehouse_account[item.warehouse]["account"]
+			elif item.is_fixed_asset and item.asset_category:
+				asset_account = get_asset_category_account(asset_category=item.asset_category, \
+					fieldname='fixed_asset_account', company=self.company)
+				item.expense_account = asset_account
+			elif not item.expense_account and for_validate:
+				throw(_("Expense account is mandatory for item {0}").format(item.item_code or item.item_name))
 
 	def get_asset_items(self):
-		pass
-	# 	return [d.item_code for d in self.items if d.is_fixed_asset]
+	
+		return [d.item_code for d in self.items if d.is_fixed_asset]
 
 
 	def set_against_expense_account(self):
@@ -94,6 +160,8 @@ class BeneficiaryAidsEntry(AccountsController):
 			self.make_beneficiary_gl_entry(gl_entries)
 			# self.make_cash_gl_entry(gl_entries)
 		elif self.type=='عيني':
+			
+			self.make_beneficiary_stock_gl_entry(gl_entries)
 			self.update_stock_ledger()
 
 		
@@ -104,6 +172,50 @@ class BeneficiaryAidsEntry(AccountsController):
 		gl_entries = merge_similar_entries(gl_entries)
 
 		return gl_entries
+
+	# def get_expenses_account(self,code):
+	# 	account= frappe.db.sql("""select def.expense_account
+	# 	from `tabItem` item
+	# 	LEFT JOIN  `tabItem Default` def 
+	#     ON item.name=def.parent
+	# 	where item.item_code=%s""",{ code}, as_dict=True)
+	# 	if not account:
+	# 		  account=frappe.db.sql("""select def.expense_account from `tabItem Group` item
+	# 	LEFT JOIN  `tabItem Default` def ON item.name=def.parent where item.item_code=%s """,{ code}, as_dict=True)
+	# 	if not account:
+	# 		 account=frappe.db.sql("""select default_expense_account from `tabCompany` """, as_dict=True)
+	# 	if not account:
+	# 		frappe.msgprint("You should to Enter Default expenses account in item default ")
+
+	def make_beneficiary_stock_gl_entry(self, gl_entries):
+		for row in self.get("items"):
+			gl_entries.append(
+					self.get_gl_dict({
+						"posting_date":self.posting_date,
+						"account": row.beneficiary_account,
+						"party_type": "Beneficiary",
+						"party": row.beneficiary,						
+						"credit":row.amount,
+						"credit_in_account_currency":row.amount,
+						"against_voucher": self.name,
+						"against_voucher_type": self.doctype,
+						"remarks": self.get("remarks") or _("Accounting Entry for Stock Entry To Beneficiary"),
+						"cost_center": row.cost_center,
+						"project": row.project
+					}, item=self))
+
+			gl_entries.append(
+				self.get_gl_dict({
+					"posting_date":self.posting_date,
+					"account": row.expense_account,
+					"debit": row.amount,
+					"debit_in_account_currency": row.amount,
+					"against_voucher": self.name,
+					"against_voucher_type": self.doctype,
+					"remarks": self.get("remarks") or _("Accounting Entry for Stock Entry From Expenses"),
+					"cost_center": row.cost_center,
+					"project": row.project
+				}, item=self))
 
 	def make_beneficiary_gl_entry(self, gl_entries):
 		for row in self.get("items"):
@@ -214,57 +326,7 @@ class BeneficiaryAidsEntry(AccountsController):
 		make_sl_entries(sl_entries, allow_negative_stock=allow_negative_stock,
 			via_landed_cost_voucher=via_landed_cost_voucher)
 
-	def get_beneficiary_list(self):
-		cond = 'where ben.status=%s and dis.state=0 and det.aid_no=dis.aid_no and det.type=%s '
-		# dis.exchange_date IN (det.from_date,det.to_date) and
-		filters=["جاري الصرف",self.type]
-		if self.aid :
-			cond += ' and det.item_code=%s '
-			filters.append(self.aid)	
-		if self.project :
-			cond += ' and det.project=%s '
-			filters.append(self.project)
-		if self.activity :
-			cond += ' and det.activity=%s '
-			filters.append(self.activity)
-		if self.cost_center :
-			cond += 'and det.cost_center=%s '
-			filters.append(self.cost_center)
-		if self.from_date :
-			cond += 'and det.from_date >= %s '
-			filters.append(self.from_date)
-			cond += 'and dis.exchange_date IN %s '
-			filters.append([self.from_date,self.to_date])
-		if self.to_date :
-			cond += 'and det.to_date <= %s '
-			filters.append(self.to_date)
-		"""
-			Returns list of active beneficiary based on selected criteria
-			and for which type exists
-		"""
-
-		return frappe.db.sql("""select beneficiary_name as beneficiary,ben.beneficiary_account,det.item_code ,det.type ,
-		det.item_account ,det.amount,det.cost_center,det.warehouse ,det.qty 
-		,det.project ,det.activity ,det.from_date ,det.to_date ,det.asset_category 
-		,dis.exchange_date,dis.state,dis.aid_no,det.aid_no,det.uom
-		from `tabBeneficiary` ben
-		LEFT JOIN  `tabDisplay Aids` dis 
-	    ON ben.name=dis.parent
-		LEFT JOIN `tabAid Details` det 	
-		ON ben.name = det.parent
-		
-		{0}  """.format(cond), filters, as_dict=True)
-
 	
-	def fill_beneficiary(self):			
-		beneficiaries = self.get_beneficiary_list()
-		if not beneficiaries:
-			frappe.throw(_("No beneficiaries for the mentioned type"))
-		
-		for d in beneficiaries:
-			frappe.msgprint(d.warehouse)
-			row=self.append('items', d)
-		self.number_of_beneficiaries = len(beneficiaries)
 
 	def get_asset_items(self):
 		return [d.item_code for d in self.items if d.is_fixed_asset]
@@ -287,7 +349,7 @@ class BeneficiaryAidsEntry(AccountsController):
 
 
 def get_item_details(args=None):
-	item = frappe.db.sql("""select i.name, id.income_account, id.default_warehouse, id.cost_center, id.project, id.project_activities 
+	item = frappe.db.sql("""select i.name, id.income_account,id.expense_account, id.default_warehouse, id.cost_center, id.project, id.project_activities 
 			from `tabItem` i LEFT JOIN `tabItem Default` id ON i.name=id.parent and id.company=%s
 			where i.name=%s
 				and i.disabled=0

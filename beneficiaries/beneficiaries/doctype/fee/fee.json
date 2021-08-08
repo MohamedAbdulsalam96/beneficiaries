@@ -1,27 +1,24 @@
 {
- "allow_guest_to_view": 1,
- "autoname": "field:obligation",
- "creation": "2021-06-16 09:07:50.936459",
+ "autoname": "field:fee",
+ "creation": "2021-08-07 18:58:23.073231",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "obligation"
+  "fee"
  ],
  "fields": [
   {
-   "fieldname": "obligation",
+   "fieldname": "fee",
    "fieldtype": "Data",
-   "ignore_user_permissions": 1,
-   "in_list_view": 1,
-   "label": "Obligation",
+   "label": "Fee",
    "unique": 1
   }
  ],
- "modified": "2021-08-08 11:43:53.779951",
+ "modified": "2021-08-08 11:43:27.966150",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
- "name": "Obligation",
+ "name": "Fee",
  "owner": "Administrator",
  "permissions": [
   {
@@ -58,9 +55,8 @@
   }
  ],
  "quick_entry": 1,
- "route": "//beneficiary-request",
  "sort_field": "modified",
  "sort_order": "DESC",
- "title_field": "obligation",
+ "title_field": "fee",
  "track_changes": 1
 }

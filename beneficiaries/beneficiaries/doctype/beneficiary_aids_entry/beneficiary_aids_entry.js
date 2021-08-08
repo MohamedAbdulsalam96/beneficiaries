@@ -25,16 +25,7 @@ frappe.ui.form.on('Beneficiary Aids Entry', {
 			}, "fa fa-table");
 
 
-			frm.add_custom_button(__('Stock Ledger'), function() {
-				frappe.route_options = {
-					"voucher_no": frm.doc.name,
-					"from_date": frm.doc.posting_date,
-					"to_date": frm.doc.posting_date,
-					"company": frm.doc.company,
-					group_by: ""
-				};
-				frappe.set_route("query-report", "Stock Ledger");
-			}, "fa fa-table");
+			
 	 }
 	},
 
@@ -68,7 +59,7 @@ frappe.ui.form.on('Beneficiary Aids Entry', {
 							callback: function(msg) {
 								if(!msg || !msg.message){msg.message = 1;}
 								u.conversion_factor = msg.message;
-								u.qty=flt(-u.qty);
+								u.qty=flt(u.qty);
 								u.stock_qty = flt(u.qty) * flt(msg.message);
 								frm.refresh_fields();			
 							}
@@ -81,7 +72,7 @@ frappe.ui.form.on('Beneficiary Aids Entry', {
 												
 								frappe.call({
 									method: "beneficiaries.beneficiaries.doctype.beneficiary_aids_entry.beneficiary_aids_entry.get_item_detail",
-									args: {item_code: row.item_code, is_fixed_asset: u.is_fixed_asset,asset_category:u.asset_category,
+									args: {item_code: u.item_code, is_fixed_asset: u.is_fixed_asset,asset_category:u.asset_category,
 										company: frm.doc.company, type: frm.doc.type,},
 									freeze: true,
 									callback: function(msg) {
@@ -90,6 +81,7 @@ frappe.ui.form.on('Beneficiary Aids Entry', {
 											u.warehouse = msg.message.warehouse;
 											u.income_account = msg.message.income_account;
 											u.expense_account = msg.message.expense_account;
+											console.log( msg.message.expense_account);
 											if(frm.doc.type == 'Asset')
 												u.asset_location = msg.message.asset_location;
 											u.cost_center = msg.message.cost_center;

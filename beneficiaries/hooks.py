@@ -73,8 +73,11 @@ app_license = "MIT"
 #
 # has_permission = {
 # 	"Event": "frappe.desk.doctype.event.event.has_permission",
+#     "Beneficiary": "beneficiaries.beneficiaries.doctype.beneficiary.beneficiary.has_website_permission"
 # }
-
+# has_website_permission = {	
+# 	"Beneficiary": "beneficiaries.beneficiaries.doctype.beneficiary.beneficiary.has_website_permission"
+# }
 # Document Events
 # ---------------
 # Hook on document methods and events

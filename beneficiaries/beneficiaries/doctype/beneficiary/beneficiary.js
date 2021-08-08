@@ -1,10 +1,19 @@
 // Copyright (c) 2021, Baida and contributors
 // For license information, please see license.txt
 frappe.ui.form.on('Beneficiary','validate',function(frm) {
+	
 	cur_frm.clear_table("display");
 		frm.events.aids_details(frm);
 					    
 })
+// frm.set_query("project_activities", "aids_details", function(doc, cdt, cdn) {
+// 	var u = locals[cdt][cdn];
+// 	return {
+// 		filters: {
+// 			project: u.project,
+// 		}
+// 	};
+// });
 frappe.ui.form.on("Beneficiary", {
 
 	aids_details: function (frm) {
@@ -12,6 +21,7 @@ frappe.ui.form.on("Beneficiary", {
 			doc: frm.doc,
 			method: 'aids_details',
 			callback: function(r) {
+				
 				cur_frm.refresh_fields("display");
 			}
 		})
@@ -71,7 +81,16 @@ frappe.ui.form.on('Aid Details', {
   })
   frappe.ui.form.on('Beneficiary', {
 	aid_approval:function(frm){
-		cur_frm.clear_table("display");
+	// 	$.each(frm.doc.display,function(i,row)
+	// {
+	// 	if (row.state==0)
+	// 	{
+	// 		row.grid.remove();
+	// 	}
+	// 	cur_frm.refresh();
+
+	// });
+		 cur_frm.clear_table("display");
 		frm.events.aids_details(frm);
 	}
   })
