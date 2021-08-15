@@ -1,5 +1,78 @@
 // Copyright (c) 2021, Baida and contributors
 // For license information, please see license.txt
+
+
+frappe.ui.form.on('Aid Details', 'item_code', function(frm, cdt, cdn) {
+	if (!frm.doc.company){
+		frm.clear_table("items");
+		frappe.throw({message:__("Please select a Company first."), title: __("Mandatory")});
+	}
+
+	var u = locals[cdt][cdn];
+	if(!u || !u.item_code)
+		return;
+
+	frappe.call({
+		method: "beneficiaries.beneficiaries.doctype.beneficiary.beneficiary.get_item_detail",
+		args: {item_code: u.item_code, asset_category: u.asset_category, 
+			company: frm.doc.company, type: u.type,},
+		freeze: true,
+		callback: function(msg) {
+			console.log(msg);
+			if(msg && msg.message){
+				u.warehouse = msg.message.warehouse;
+				u.income_account = msg.message.income_account;
+				u.expense_account = msg.message.expense_account;
+				console.log( msg.message.expense_account);
+				u.cost_center = msg.message.cost_center;
+				u.project = msg.message.project;
+				u.project_activities = msg.message.project_activities;
+				u.valuation_rate = msg.message.valuation_rate;
+				u.rate=msg.message.valuation_rate;
+				
+				frm.refresh_fields();
+			}			
+		}
+	}); 
+});
+frappe.ui.form.on("Aid Details", {
+	uom:function(frm, cdt, cdn){
+		var u = locals[cdt][cdn];
+		if(u.uom == null){return;}
+		frappe.call({
+			method: "beneficiaries.beneficiaries.doctype.beneficiary.beneficiary.get_conversion_factor",
+			args: {
+				item_code: u.item_code,
+				uom : u.uom,
+			},
+			freeze: true,
+			callback: function(msg) {
+				if(!msg || !msg.message){msg.message = 1;}
+				u.conversion_factor = msg.message;
+				u.stock_qty = flt(u.qty) * flt(msg.message);
+				frm.refresh_fields();			
+			}
+		}); 
+	}}
+);
+frappe.ui.form.on('Aid Details', 'qty', function(frm, cdt, cdn) {
+	var u = locals[cdt][cdn];
+	u.stock_qty = flt(u.qty) * flt(u.conversion_factor);
+	cur_frm.cscript.update_row_amount(frm, cdt, cdn);
+
+	
+});
+frappe.ui.form.on('Aid Details', 'rate', function(frm, cdt, cdn) {	
+	cur_frm.cscript.update_row_amount(frm, cdt, cdn);
+
+});
+
+cur_frm.cscript.update_row_amount = function(frm, cdt, cdn){
+	var u = locals[cdt][cdn];
+	frappe.model.set_value(u.doctype, u.name, "amount", (u.qty * u.rate));
+	frm.refresh_fields();	
+}
+	  
 frappe.ui.form.on('Beneficiary','validate',function(frm) {
 	
 	cur_frm.clear_table("display");

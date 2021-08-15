@@ -12,7 +12,7 @@
    "fieldname": "needs",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "\u0627\u0644\u0627\u062d\u062a\u064a\u0627\u062c",
+   "label": "Need",
    "options": "Basic Need",
    "unique": 1
   },
@@ -20,11 +20,11 @@
    "fieldname": "notes",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a"
+   "label": "Note"
   }
  ],
  "istable": 1,
- "modified": "2021-07-05 12:18:16.064150",
+ "modified": "2021-08-12 05:55:03.668816",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Beneficiary Basic Need",

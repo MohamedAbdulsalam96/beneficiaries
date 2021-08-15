@@ -4,64 +4,232 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "personal_details_section",
   "beneficiary_name",
-  "gender",
-  "age",
-  "health_status",
-  "disease",
   "type",
-  "fee"
+  "relation_ship",
+  "birth_date",
+  "place_of_birth",
+  "column_break_7",
+  "gender",
+  "material_status",
+  "mobile",
+  "identification_no",
+  "eduaction_details_section",
+  "education_level",
+  "rating",
+  "column_break_15",
+  "education_state",
+  "specialist",
+  "fee_details_section",
+  "fee",
+  "source_of_income",
+  "column_break_21",
+  "retired",
+  "need_technical_support",
+  "relation_with_quran_section",
+  "join_of_quran_groups",
+  "column_break_26",
+  "quran",
+  "talent_details_section",
+  "talent",
+  "talents",
+  "health_details_section",
+  "health_status",
+  "disease"
  ],
  "fields": [
   {
    "fieldname": "gender",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "\u0627\u0644\u0646\u0648\u0639",
-   "options": "\u0630\u0643\u0631\n\u0623\u0646\u062b\u0649"
-  },
-  {
-   "fieldname": "age",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "\u0627\u0644\u0639\u0645\u0631"
+   "label": "Gender",
+   "options": "Male\nFemale"
   },
   {
    "fieldname": "health_status",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "\u0627\u0644\u062d\u0627\u0644\u0629 \u0627\u0644\u0635\u062d\u064a\u0629",
-   "options": "\u062c\u064a\u062f\u0629\n\u0633\u064a\u0626\u0629"
+   "label": "Health Status",
+   "options": "Good\nBad"
   },
   {
    "fieldname": "disease",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "\u0627\u0645\u0631\u0627\u0636"
+   "label": "Disease"
   },
   {
    "fieldname": "type",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "\u0627\u0644\u0646\u0648\u0639",
-   "options": "\u062a\u0627\u0628\u0639\n\u0645\u0633\u062a\u0642\u0644\n\u064a\u062a\u064a\u0645"
-  },
-  {
-   "fieldname": "fee",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "\u0627\u0644\u062f\u062e\u0644"
+   "label": "Type",
+   "options": "Dependent\nIndependent\nFatherless"
   },
   {
    "fetch_from": "beneficiary_family_member.beneficiary_name",
    "fieldname": "beneficiary_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "\u0627\u0633\u0645 \u0627\u0644\u0641\u0631\u062f"
+   "label": "Full Beneficiary Name"
+  },
+  {
+   "fieldname": "place_of_birth",
+   "fieldtype": "Link",
+   "label": "Place of Birth",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "education_state",
+   "fieldtype": "Select",
+   "label": "Education State",
+   "options": "Complete\nSundered\nContinuous"
+  },
+  {
+   "fieldname": "identification_no",
+   "fieldtype": "Data",
+   "label": "Identification No",
+   "length": 10,
+   "options": "Phone"
+  },
+  {
+   "fieldname": "birth_date",
+   "fieldtype": "Date",
+   "label": "Birth Date"
+  },
+  {
+   "fieldname": "education_level",
+   "fieldtype": "Select",
+   "label": "Education Level",
+   "options": "Primary\nSecondary\nBachelor\nMaster\nDiploma"
+  },
+  {
+   "fieldname": "material_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Material Status",
+   "options": "Single\nMarried\nDivorced\nWidow"
+  },
+  {
+   "fieldname": "specialist",
+   "fieldtype": "Data",
+   "label": "Specialist"
+  },
+  {
+   "fieldname": "relation_ship",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Relation Ship",
+   "options": "Father\nMother\nSon\nDaughters\nGrandma\nGrandpa"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile",
+   "length": 10,
+   "options": "Phone"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Select",
+   "label": "Rate",
+   "options": "Excellent\nVery Good\nGood\nAccept\nWeak"
+  },
+  {
+   "fieldname": "fee",
+   "fieldtype": "Currency",
+   "label": "Fee"
+  },
+  {
+   "default": "0",
+   "fieldname": "retired",
+   "fieldtype": "Check",
+   "label": "Retired"
+  },
+  {
+   "default": "0",
+   "fieldname": "need_technical_support",
+   "fieldtype": "Check",
+   "label": "Need Technical Support"
+  },
+  {
+   "fieldname": "source_of_income",
+   "fieldtype": "Link",
+   "label": "Source Of Income",
+   "options": "Fee"
+  },
+  {
+   "default": "0",
+   "fieldname": "join_of_quran_groups",
+   "fieldtype": "Check",
+   "label": "Join Of Quran Groups"
+  },
+  {
+   "default": "0",
+   "fieldname": "talent",
+   "fieldtype": "Check",
+   "label": "Has Talent"
+  },
+  {
+   "depends_on": "eval:doc.talent==1",
+   "fieldname": "talents",
+   "fieldtype": "Data",
+   "label": "Talents"
+  },
+  {
+   "fieldname": "quran",
+   "fieldtype": "Select",
+   "label": "How Much Of The Qur'an Has Been Memorized?",
+   "options": "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30"
+  },
+  {
+   "fieldname": "personal_details_section",
+   "fieldtype": "Section Break",
+   "label": "PERSONAL DETAILS"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "eduaction_details_section",
+   "fieldtype": "Section Break",
+   "label": "EDUACTION DETAILS"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fee_details_section",
+   "fieldtype": "Section Break",
+   "label": "FEE DETAILS"
+  },
+  {
+   "fieldname": "column_break_21",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "relation_with_quran_section",
+   "fieldtype": "Section Break",
+   "label": "RELATION WITH QUR'AN"
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "talent_details_section",
+   "fieldtype": "Section Break",
+   "label": "TALENT DETAILS"
+  },
+  {
+   "fieldname": "health_details_section",
+   "fieldtype": "Section Break",
+   "label": "HEALTH DETAILS"
   }
  ],
  "istable": 1,
- "modified": "2021-07-30 15:36:53.222993",
+ "modified": "2021-08-15 11:40:41.375166",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Family Members Info",

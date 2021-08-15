@@ -1,0 +1,152 @@
+{
+ "autoname": "naming_series:",
+ "creation": "2021-08-11 15:10:59.304283",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "beneficiary",
+  "beneficiary_account",
+  "aids_account",
+  "exchange_date",
+  "type",
+  "column_break_5",
+  "amount",
+  "item_code",
+  "qty",
+  "warehouse",
+  "warehouse_account",
+  "income_account",
+  "expense_account",
+  "beneficiary_aids_entry",
+  "beneficiary_aid_payment"
+ ],
+ "fields": [
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Beneficiary",
+   "options": "Beneficiary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "exchange_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Exchange Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "Cash\nMaterial",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "beneficiary_aids_entry",
+   "fieldtype": "Link",
+   "label": "Beneficiary Aids Entry",
+   "options": "Beneficiary Aids Entry",
+   "read_only": 1
+  },
+  {
+   "fieldname": "beneficiary_aid_payment",
+   "fieldtype": "Data",
+   "label": "Beneficiary Aid Payment"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "BEN-LOG-.YYYY.-"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "warehouse_account",
+   "fieldtype": "Link",
+   "label": "Warehouse Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "income_account",
+   "fieldtype": "Link",
+   "label": "Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "expense_account",
+   "fieldtype": "Link",
+   "label": "Expense Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "beneficiary_account",
+   "fieldtype": "Link",
+   "label": "Beneficiary Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "aids_account",
+   "fieldtype": "Link",
+   "label": "Aids Account",
+   "options": "Account"
+  }
+ ],
+ "modified": "2021-08-12 05:00:48.418609",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Beneficiary logs",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

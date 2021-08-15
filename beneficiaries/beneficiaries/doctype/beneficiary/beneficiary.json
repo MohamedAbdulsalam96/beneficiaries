@@ -1,92 +1,91 @@
 {
  "autoname": "field:beneficiary_name",
- "creation": "2021-06-30 21:21:31.401502",
+ "creation": "2021-08-08 13:54:24.993594",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "beneficiary_request",
   "status",
-  "raised_by",
   "column_break_3",
   "date_of_registration",
+  "renewal_date",
   "company",
-  "section_break_3",
+  "personal_details_section",
   "beneficiary_name",
   "beneficiary_account",
   "bank_account",
+  "beneficiary_bank_account",
   "account_no",
   "gender",
+  "marital_status",
+  "nationality",
+  "column_break_9",
+  "territory",
+  "address",
   "phone",
   "mobile",
   "email",
   "default_password",
-  "column_break_8",
-  "marital_status",
-  "nationality",
-  "territory",
-  "address",
   "duration_of_benefit_from_the_association",
   "identification_details_section",
   "identification",
   "address_and_contact_section",
   "address_html",
-  "column_break_20",
   "contact_html",
-  "contact",
-  "section_break_12",
+  "fee_details_section",
   "fees",
   "fee_total",
-  "section_break_15",
+  "obligation_details_section",
   "beneficiary_obligation",
   "obligations_total",
-  "section_break_18",
+  "home_details_section",
   "home_type",
-  "home_attach",
   "number_of_rooms",
   "home_state",
-  "column_break_24",
+  "column_break_38",
+  "home_attach",
   "the_number_of_licenses_and_commercial_records",
   "family_owns_section",
   "family_own",
-  "family_members_section_section",
+  "family_members_details_section",
   "family",
-  "section_break_27",
+  "family_details_section",
   "number_of_family",
   "number_of_wives",
   "number_of_needed_members_in_family",
-  "column_break_30",
+  "column_break_48",
   "the_number_of_professional_workers",
   "the_number_of_household_workers",
-  "section_break_28",
-  "table_29",
-  "section_break_30",
-  "table_31",
-  "ben_notes_section",
+  "beneficiary_basic_needs_section",
+  "basic_needs",
+  "beneficiary_additional_details_section",
+  "beneficiary_additional_need",
+  "beneficiary_notes_section",
   "beneficiary_notes",
-  "deserve_according_the_base_section",
+  "due_according_to_the_system_section",
   "live_base",
   "rent_base",
   "deserve_according_to_base",
-  "column_break_45",
+  "column_break_61",
   "rent_in_year",
   "rent_in_five_year",
-  "section_break_34",
+  "decision_details_section",
   "aid_details",
   "aid_approval",
   "display",
-  "section_break_46",
+  "review_and_specialist_opinions_section",
   "research_name",
   "researcher_approve",
   "researcher_notes",
-  "column_break_56",
+  "column_break_72",
   "auditor",
   "auditor_approve",
   "auditor_notes",
-  "committee_section",
+  "committee_opinion_details_section",
   "committee_approve",
   "committee_notes",
-  "return_section",
+  "return_info_section",
   "return",
   "employee",
   "reason_of_return"
@@ -95,500 +94,55 @@
   {
    "fieldname": "beneficiary_request",
    "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "in_list_view": 1,
-   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0637\u0644\u0628",
-   "options": "Beneficiary Request",
-   "read_only": 1
-  },
-  {
-   "fieldname": "beneficiary_name",
-   "fieldtype": "Data",
-   "ignore_user_permissions": 1,
-   "label": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f \u0643\u0627\u0645\u0644\u0627\u064b",
-   "unique": 1
+   "label": "Beneficiary Request",
+   "options": "Beneficiary Request"
   },
   {
    "fieldname": "status",
    "fieldtype": "Select",
-   "label": "\u0627\u0644\u062d\u0627\u0644\u0629 ",
-   "options": "\u062c\u0627\u0631\u064a \u0627\u0644\u0635\u0631\u0641\n\u0645\u0648\u0642\u0641\u0629"
+   "label": "Status",
+   "options": "In Progress\nSuspended"
   },
   {
-   "fieldname": "territory",
+   "fieldname": "company",
    "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "\u0627\u0644\u0645\u0646\u0637\u0642\u0629",
-   "options": "Territory"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "identification_details_section",
-   "fieldtype": "Section Break",
-   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0647\u0648\u064a\u0629"
-  },
-  {
-   "fieldname": "identification",
-   "fieldtype": "Table",
-   "label": " ",
-   "options": "Identification Type"
-  },
-  {
-   "fieldname": "marital_status",
-   "fieldtype": "Select",
-   "label": "\u0627\u0644\u062d\u0627\u0644\u0629 \u0627\u0644\u0627\u062c\u062a\u0645\u0627\u0639\u064a\u0629",
-   "options": "\u0639\u0627\u0632\u0628\n\u0645\u062a\u0632\u0648\u062c\n\u0645\u0637\u0644\u0642\n\u0623\u0631\u0645\u0644"
-  },
-  {
-   "fieldname": "nationality",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "\u0627\u0644\u062c\u0646\u0633\u064a\u0629",
-   "options": "Nationality"
-  },
-  {
-   "fieldname": "gender",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "\u0627\u0644\u0646\u0648\u0639",
-   "options": "Gender"
+   "label": "Company",
+   "options": "Company"
   },
   {
    "fieldname": "date_of_registration",
-   "fieldtype": "Data",
-   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u062a\u0633\u062c\u064a\u0644"
-  },
-  {
-   "fieldname": "duration_of_benefit_from_the_association",
-   "fieldtype": "Data",
-   "label": "\u0645\u062f\u0629 \u0628\u0642\u0627\u0621\u0647 \u0641\u064a \u0627\u0644\u0639\u0646\u064a\u0632\u0629"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "section_break_12",
-   "fieldtype": "Section Break",
-   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u062f\u062e\u0644"
-  },
-  {
-   "fieldname": "fees",
-   "fieldtype": "Table",
-   "options": "Fee Type"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "section_break_15",
-   "fieldtype": "Section Break",
-   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0627\u0644\u062a\u0632\u0627\u0645\u0627\u062a"
-  },
-  {
-   "fieldname": "beneficiary_obligation",
-   "fieldtype": "Table",
-   "options": "Beneficiary Obligation"
-  },
-  {
-   "fieldname": "obligations_total",
-   "fieldtype": "Currency",
-   "label": "\u0627\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u0627\u0644\u062a\u0632\u0627\u0645\u0627\u062a \u0627\u0644\u0633\u0646\u0648\u064a\u0629"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "section_break_18",
-   "fieldtype": "Section Break",
-   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0633\u0643\u0646"
-  },
-  {
-   "fieldname": "home_type",
-   "fieldtype": "Select",
-   "label": "\u0646\u0648\u0639 \u0627\u0644\u0645\u0646\u0632\u0644",
-   "options": "\u0645\u0644\u0643\n\u0625\u064a\u062c\u0627\u0631"
-  },
-  {
-   "fieldname": "the_number_of_licenses_and_commercial_records",
-   "fieldtype": "Int",
-   "label": "\u0639\u062f\u062f \u0627\u0644\u0631\u062e\u0635 \u0627\u0644\u0633\u062c\u0644\u0627\u062a \u0627\u0644\u062a\u062c\u0627\u0631\u064a\u0629"
-  },
-  {
-   "fieldname": "home_attach",
-   "fieldtype": "Attach",
-   "label": "\u0645\u0631\u0641\u0642 \u0646\u0648\u0639 \u0627\u0644\u0645\u0646\u0632\u0644"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "family_members_section_section",
-   "fieldtype": "Section Break",
-   "label": "\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0641\u0631\u0627\u062f \u0627\u0644\u0627\u0633\u0631\u0629"
-  },
-  {
-   "fieldname": "number_of_family",
-   "fieldtype": "Int",
-   "label": "\u0639\u062f\u062f \u0627\u0641\u0631\u0627\u062f \u0627\u0644\u0627\u0633\u0631\u0629"
-  },
-  {
-   "fieldname": "number_of_wives",
-   "fieldtype": "Int",
-   "label": "\u0639\u062f\u062f \u0627\u0644\u0632\u0648\u062c\u0627\u062a"
-  },
-  {
-   "fieldname": "number_of_needed_members_in_family",
-   "fieldtype": "Int",
-   "label": "\u0639\u062f\u062f \u0627\u0644\u0627\u0641\u0631\u0627\u062f \u0627\u0644\u0645\u0639\u0627\u0644\u064a\u0646"
-  },
-  {
-   "fieldname": "the_number_of_professional_workers",
-   "fieldtype": "Int",
-   "label": "\u0639\u062f\u062f \u0627\u0644\u0627\u0641\u0631\u0627\u062f \u0627\u0644\u0639\u0627\u0645\u0644\u064a\u0646 \u0627\u0639\u0645\u0627\u0644 \u0645\u0647\u0646\u064a\u0629"
-  },
-  {
-   "fieldname": "the_number_of_household_workers",
-   "fieldtype": "Int",
-   "label": "\u0639\u062f\u062f \u0627\u0644\u0627\u0641\u0631\u0627\u062f \u0627\u0644\u0639\u0627\u0645\u0644\u064a\u0646 \u0628\u0627\u0644\u0645\u0646\u0632\u0644"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "section_break_28",
-   "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u0627\u062d\u062a\u064a\u0627\u062c\u0627\u062a \u0627\u0644\u0627\u0633\u0627\u0633\u064a\u0629"
-  },
-  {
-   "fieldname": "table_29",
-   "fieldtype": "Table",
-   "options": "Beneficiary Basic Need"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "section_break_30",
-   "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u0627\u062d\u062a\u064a\u0627\u062c\u0627\u062a \u0627\u0644\u0627\u0636\u0627\u0641\u064a\u0629"
-  },
-  {
-   "fieldname": "table_31",
-   "fieldtype": "Table",
-   "options": "Beneficiary Additional Need"
-  },
-  {
-   "fieldname": "beneficiary_notes",
-   "fieldtype": "Small Text",
-   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f"
-  },
-  {
-   "default": "0",
-   "fieldname": "deserve_according_to_base",
-   "fieldtype": "Check",
-   "label": "\u0645\u0633\u062a\u062d\u0642 \u062d\u0633\u0628 \u0627\u0644\u0646\u0638\u0627\u0645",
-   "read_only": 1
-  },
-  {
-   "fieldname": "section_break_34",
-   "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u0642\u0631\u0627\u0631"
-  },
-  {
-   "fieldname": "section_break_3",
-   "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a \u0627\u0644\u0634\u062e\u0635\u064a\u0629"
+   "fieldtype": "Date",
+   "label": "Date of Registration"
   },
   {
    "fieldname": "column_break_3",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "column_break_8",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_30",
-   "fieldtype": "Column Break"
-  },
-  {
    "collapsible": 1,
-   "fieldname": "section_break_27",
+   "fieldname": "personal_details_section",
    "fieldtype": "Section Break",
-   "label": "\u062a\u0641\u0627\u0635\u064a\u0644 \u0639\u0646 \u0627\u0644\u0627\u0633\u0631\u0629"
+   "label": "PERSONAL DETAILS"
   },
   {
-   "fieldname": "column_break_24",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "aid_details",
-   "fieldtype": "Table",
-   "label": "\u0627\u0644\u0642\u0631\u0627\u0631\u062a \u0627\u0644\u0645\u0648\u0635\u0649 \u0628\u0647\u0627",
-   "options": "Aid Details"
-  },
-  {
-   "depends_on": "eval:doc.researcher_approve==1",
-   "fieldname": "research_name",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "\u0627\u0644\u0628\u0627\u062d\u062b",
-   "options": "User",
-   "permlevel": 1
-  },
-  {
-   "fieldname": "researcher_notes",
-   "fieldtype": "Small Text",
-   "label": " \u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0628\u0627\u062d\u062b",
-   "permlevel": 1
-  },
-  {
-   "default": "0",
-   "fieldname": "researcher_approve",
-   "fieldtype": "Check",
-   "label": "\u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0628\u0627\u062d\u062b",
-   "permlevel": 1,
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.auditor_approve==1",
-   "fieldname": "auditor",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "\u0627\u0644\u0645\u062f\u0642\u0642",
-   "options": "User",
-   "permlevel": 2
-  },
-  {
-   "default": "0",
-   "fieldname": "auditor_approve",
-   "fieldtype": "Check",
-   "label": "\u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0645\u062f\u0642\u0642",
-   "permlevel": 2,
-   "read_only": 1
-  },
-  {
-   "fieldname": "auditor_notes",
-   "fieldtype": "Small Text",
-   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0645\u062f\u0642\u0642",
-   "permlevel": 2
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "section_break_46",
-   "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u0645\u0631\u0627\u062c\u0639\u0629 \u0648 \u0622\u0631\u0627\u0621 \u0627\u0644\u0645\u062e\u062a\u0635\u064a\u0646"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "committee_section",
-   "fieldtype": "Section Break",
-   "label": "\u0631\u0623\u064a \u0627\u0644\u0644\u062c\u0646\u0629 ",
-   "permlevel": 3
-  },
-  {
-   "default": "0",
-   "fieldname": "committee_approve",
-   "fieldtype": "Check",
-   "label": "\u0645\u0648\u0627\u0641\u0642\u0629 \u0627\u0644\u0644\u062c\u0646\u0629",
-   "permlevel": 3,
-   "read_only": 1
-  },
-  {
-   "fieldname": "committee_notes",
-   "fieldtype": "Small Text",
-   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0644\u062c\u0646\u0629",
-   "permlevel": 3
-  },
-  {
-   "fieldname": "aid_approval",
-   "fieldtype": "Button",
-   "label": "\u0639\u0631\u0636 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0627\u062a",
-   "permlevel": 3
-  },
-  {
-   "fieldname": "display",
-   "fieldtype": "Table",
-   "options": "Display Aids",
-   "permlevel": 3
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "ben_notes_section",
-   "fieldtype": "Section Break",
-   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f"
-  },
-  {
-   "fieldname": "deserve_according_the_base_section",
-   "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u0631\u0623\u064a \u062d\u0633\u0628 \u0627\u0644\u0646\u0638\u0627\u0645",
-   "permlevel": 1
-  },
-  {
-   "depends_on": "eval:doc.deserve_according_to_base==1",
-   "fieldname": "live_base",
-   "fieldtype": "Currency",
-   "label": "\u0642\u0627\u0639\u062f\u0629 \u0627\u0644\u0625\u0639\u0627\u0634\u0629",
-   "length": 10,
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.deserve_according_to_base==1",
-   "fieldname": "rent_base",
-   "fieldtype": "Currency",
-   "label": "\u0642\u0627\u0639\u062f\u0629 \u0627\u0644\u0623\u062c\u0631\u0629",
-   "length": 10,
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.deserve_according_to_base==1",
-   "fieldname": "rent_in_year",
-   "fieldtype": "Currency",
-   "label": "\u0627\u0644\u0623\u062c\u0631\u0629 \u0627\u0644\u0633\u0646\u0648\u064a\u0629",
-   "length": 10,
-   "read_only": 1
-  },
-  {
-   "depends_on": "eval:doc.deserve_according_to_base==1",
-   "fieldname": "rent_in_five_year",
-   "fieldtype": "Currency",
-   "label": "\u0627\u0644\u0623\u062c\u0631\u0629 \u0627\u0644\u0645\u0642\u0637\u0648\u0639\u0629(\u0643\u0644 \u062e\u0645\u0633 \u0633\u0646\u0648\u0627\u062a)",
-   "length": 10,
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_45",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_56",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "phone",
+   "fieldname": "beneficiary_name",
    "fieldtype": "Data",
-   "ignore_user_permissions": 1,
-   "label": "\u0627\u0644\u0647\u0627\u062a\u0641",
-   "options": "Phone"
-  },
-  {
-   "fieldname": "email",
-   "fieldtype": "Data",
-   "label": "\u0627\u0644\u0627\u064a\u0645\u064a\u0644",
-   "options": "Email"
-  },
-  {
-   "collapsible": 1,
-   "depends_on": "eval:!doc.__islocal",
-   "fieldname": "address_and_contact_section",
-   "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u0639\u0646\u0648\u0627\u0646 \u0648\u0627\u0644\u062a\u0648\u0627\u0635\u0644",
-   "options": "fa fa-map-marker"
-  },
-  {
-   "fieldname": "address_html",
-   "fieldtype": "HTML",
-   "label": "Address HTML",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_20",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "contact_html",
-   "fieldtype": "HTML",
-   "label": "Contact HTML",
-   "read_only": 1
-  },
-  {
-   "fieldname": "mobile",
-   "fieldtype": "Data",
-   "label": "\u0627\u0644\u062c\u0648\u0627\u0644",
-   "length": 10,
-   "options": "Phone"
-  },
-  {
-   "fieldname": "address",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "\u0627\u0644\u062d\u064a"
-  },
-  {
-   "fieldname": "fee_total",
-   "fieldtype": "Currency",
-   "label": "\u0627\u062c\u0645\u0627\u0644\u064a \u0627\u0644\u062f\u062e\u0644 \u0627\u0644\u0633\u0646\u0648\u064a"
-  },
-  {
-   "fieldname": "number_of_rooms",
-   "fieldtype": "Int",
-   "label": "\u0639\u062f\u062f \u0627\u0644\u063a\u0631\u0641"
-  },
-  {
-   "fieldname": "home_state",
-   "fieldtype": "Select",
-   "label": "\u062d\u0627\u0644\u0629 \u0627\u0644\u0645\u0646\u0632\u0644",
-   "options": "\u062c\u064a\u062f\u0629\n\u0633\u064a\u0626\u0629\n\u0639\u0627\u062f\u064a\u0629"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "family_owns_section",
-   "fieldtype": "Section Break",
-   "label": "\u0645\u0645\u062a\u0644\u0643\u0627\u062a \u0627\u0644\u0623\u0633\u0631\u0629"
-  },
-  {
-   "fieldname": "family_own",
-   "fieldtype": "Table",
-   "options": "Family own"
+   "label": "Beneficiary Name",
+   "unique": 1
   },
   {
    "fieldname": "beneficiary_account",
    "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "\u062d\u0633\u0627\u0628 \u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f\u064a\u0646",
+   "label": "Beneficiary Account",
    "options": "Account"
   },
   {
-   "fieldname": "default_password",
-   "fieldtype": "Data",
-   "label": "Default Password",
-   "read_only": 1
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "return_section",
-   "fieldtype": "Section Break",
-   "label": "\u0627\u0644\u0625\u062d\u0627\u0644\u0627\u062a",
-   "permlevel": 3
-  },
-  {
-   "depends_on": "eval:doc.return==1",
-   "fieldname": "employee",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "\u0625\u062d\u0627\u0644\u0629 \u0625\u0644\u0649",
-   "options": "User",
-   "permlevel": 3
-  },
-  {
-   "depends_on": "eval:doc.return==1",
-   "fieldname": "reason_of_return",
-   "fieldtype": "Data",
-   "label": "\u0633\u0628\u0628 \u0627\u0644\u0625\u062d\u0627\u0644\u0629",
-   "permlevel": 3
-  },
-  {
-   "default": "0",
-   "fieldname": "return",
-   "fieldtype": "Check",
-   "label": "\u0625\u062d\u0627\u0644\u0629 \u0627\u0644\u0645\u0644\u0641",
-   "permlevel": 3
-  },
-  {
-   "fieldname": "company",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "Company",
-   "options": "Company"
-  },
-  {
-   "fieldname": "family",
-   "fieldtype": "Table",
-   "label": "\u0627\u0641\u0631\u0627\u062f \u0627\u0644\u0627\u0633\u0631\u0629",
-   "options": "Family Members Info"
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "bank_account",
    "fieldtype": "Link",
-   "ignore_user_permissions": 1,
    "label": "Bank Account",
    "options": "Bank Account"
   },
@@ -598,20 +152,409 @@
    "label": "Account No"
   },
   {
-   "fieldname": "raised_by",
-   "fieldtype": "Data",
-   "label": "raised_by",
-   "options": "Email",
-   "read_only": 1
+   "fieldname": "gender",
+   "fieldtype": "Link",
+   "label": "Gender",
+   "options": "Gender"
   },
   {
-   "fieldname": "contact",
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "default_password",
+   "fieldtype": "Data",
+   "label": "Default Password"
+  },
+  {
+   "fieldname": "marital_status",
+   "fieldtype": "Select",
+   "label": "Marital Status",
+   "options": "Single\nMarried\nDivorced\nWidow"
+  },
+  {
+   "fieldname": "nationality",
    "fieldtype": "Link",
-   "label": "Contact",
-   "options": "Contact"
+   "label": "Nationality",
+   "options": "Nationality"
+  },
+  {
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "label": "Territory",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Link",
+   "label": "Address",
+   "options": "Beneficiary Address"
+  },
+  {
+   "fieldname": "duration_of_benefit_from_the_association",
+   "fieldtype": "Data",
+   "label": "Duration of Benefit from The Association"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "identification_details_section",
+   "fieldtype": "Section Break",
+   "label": "IDENTIFICATION DETAILS"
+  },
+  {
+   "fieldname": "identification",
+   "fieldtype": "Table",
+   "label": "Identification",
+   "options": "Identification Type"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "address_and_contact_section",
+   "fieldtype": "Section Break",
+   "label": "ADDRESS AND CONTACT",
+   "options": "fa fa-map-marker"
+  },
+  {
+   "fieldname": "address_html",
+   "fieldtype": "HTML",
+   "label": "ADDRESS HTML"
+  },
+  {
+   "fieldname": "contact_html",
+   "fieldtype": "HTML",
+   "label": "CONTACT HTML"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "fee_details_section",
+   "fieldtype": "Section Break",
+   "label": "FEE DETAILS"
+  },
+  {
+   "fieldname": "fees",
+   "fieldtype": "Table",
+   "label": "Fee Type",
+   "options": "Fee Type"
+  },
+  {
+   "fieldname": "fee_total",
+   "fieldtype": "Currency",
+   "label": "Fee Total"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "obligation_details_section",
+   "fieldtype": "Section Break",
+   "label": "OBLIGATION DETAILS"
+  },
+  {
+   "fieldname": "beneficiary_obligation",
+   "fieldtype": "Table",
+   "label": "Beneficiary Obligation",
+   "options": "Beneficiary Obligation"
+  },
+  {
+   "fieldname": "obligations_total",
+   "fieldtype": "Currency",
+   "label": "Obligations Total"
+  },
+  {
+   "fieldname": "home_details_section",
+   "fieldtype": "Section Break",
+   "label": "HOME DETAILS"
+  },
+  {
+   "fieldname": "home_type",
+   "fieldtype": "Select",
+   "label": "Home type",
+   "options": "Own\nRent"
+  },
+  {
+   "fieldname": "home_attach",
+   "fieldtype": "Attach",
+   "label": "Home Attach"
+  },
+  {
+   "fieldname": "number_of_rooms",
+   "fieldtype": "Int",
+   "label": "Number of Rooms"
+  },
+  {
+   "fieldname": "home_state",
+   "fieldtype": "Select",
+   "label": "Home State",
+   "options": "Good\nNormal\nBad"
+  },
+  {
+   "fieldname": "column_break_38",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "the_number_of_licenses_and_commercial_records",
+   "fieldtype": "Int",
+   "label": "The Number of Licenses and Commercial Records"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "family_owns_section",
+   "fieldtype": "Section Break",
+   "label": "FAMILY OWNS"
+  },
+  {
+   "fieldname": "family_own",
+   "fieldtype": "Table",
+   "label": "Family own",
+   "options": "Family own"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "family_members_details_section",
+   "fieldtype": "Section Break",
+   "label": "FAMILY MEMBERS DETAILS"
+  },
+  {
+   "fieldname": "family",
+   "fieldtype": "Table",
+   "label": "Family Members Info",
+   "options": "Family Members Info"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "family_details_section",
+   "fieldtype": "Section Break",
+   "label": "FAMILY DETAILS"
+  },
+  {
+   "fieldname": "number_of_family",
+   "fieldtype": "Int",
+   "label": "Number of Family"
+  },
+  {
+   "fieldname": "number_of_wives",
+   "fieldtype": "Int",
+   "label": "Number of Wives"
+  },
+  {
+   "fieldname": "number_of_needed_members_in_family",
+   "fieldtype": "Int",
+   "label": "Number Of Member That Live In Home"
+  },
+  {
+   "fieldname": "column_break_48",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "the_number_of_professional_workers",
+   "fieldtype": "Int",
+   "label": "The Number of Professional Workers"
+  },
+  {
+   "fieldname": "the_number_of_household_workers",
+   "fieldtype": "Int",
+   "label": "The Number of Household Workers"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "beneficiary_basic_needs_section",
+   "fieldtype": "Section Break",
+   "label": "BENEFICIARY BASIC NEEDS"
+  },
+  {
+   "fieldname": "basic_needs",
+   "fieldtype": "Table",
+   "label": "Basic Needs",
+   "options": "Beneficiary Basic Need"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "beneficiary_additional_details_section",
+   "fieldtype": "Section Break",
+   "label": "BENEFICIARY ADDITIONAL DETAILS"
+  },
+  {
+   "fieldname": "beneficiary_additional_need",
+   "fieldtype": "Table",
+   "label": "Additional Need",
+   "options": "Beneficiary Additional Need"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "beneficiary_notes_section",
+   "fieldtype": "Section Break",
+   "label": "BENEFICIARY NOTES"
+  },
+  {
+   "fieldname": "beneficiary_notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "due_according_to_the_system_section",
+   "fieldtype": "Section Break",
+   "label": "DUE ACCORDING TO THE SYSTEM"
+  },
+  {
+   "fieldname": "live_base",
+   "fieldtype": "Currency",
+   "label": "Live Base"
+  },
+  {
+   "fieldname": "rent_base",
+   "fieldtype": "Currency",
+   "label": "Rent Base"
+  },
+  {
+   "default": "0",
+   "fieldname": "deserve_according_to_base",
+   "fieldtype": "Check",
+   "label": "Deserve According To Base"
+  },
+  {
+   "fieldname": "column_break_61",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rent_in_year",
+   "fieldtype": "Currency",
+   "label": "Rent In Year"
+  },
+  {
+   "fieldname": "rent_in_five_year",
+   "fieldtype": "Currency",
+   "label": "Rent In Five Year"
+  },
+  {
+   "fieldname": "decision_details_section",
+   "fieldtype": "Section Break",
+   "label": "DECISION DETAILS"
+  },
+  {
+   "fieldname": "aid_details",
+   "fieldtype": "Table",
+   "label": "Aid Details",
+   "options": "Aid Details"
+  },
+  {
+   "fieldname": "aid_approval",
+   "fieldtype": "Button",
+   "label": "Aid Approval"
+  },
+  {
+   "fieldname": "display",
+   "fieldtype": "Table",
+   "label": "Aids Display",
+   "options": "Display Aids"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "review_and_specialist_opinions_section",
+   "fieldtype": "Section Break",
+   "label": "REVIEW AND SPECIALIST OPINIONS"
+  },
+  {
+   "fieldname": "research_name",
+   "fieldtype": "Link",
+   "label": "Researcher",
+   "options": "User"
+  },
+  {
+   "default": "0",
+   "fieldname": "researcher_approve",
+   "fieldtype": "Check",
+   "label": "Researcher Approve"
+  },
+  {
+   "fieldname": "researcher_notes",
+   "fieldtype": "Small Text",
+   "label": "Researcher Notes"
+  },
+  {
+   "fieldname": "column_break_72",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "auditor",
+   "fieldtype": "Link",
+   "label": "Auditor",
+   "options": "User"
+  },
+  {
+   "default": "0",
+   "fieldname": "auditor_approve",
+   "fieldtype": "Check",
+   "label": "Auditor Approve"
+  },
+  {
+   "fieldname": "auditor_notes",
+   "fieldtype": "Small Text",
+   "label": "Auditor Notes"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "committee_opinion_details_section",
+   "fieldtype": "Section Break",
+   "label": "COMMITTEE OPINION DETAILS"
+  },
+  {
+   "default": "0",
+   "fieldname": "committee_approve",
+   "fieldtype": "Check",
+   "label": "Committee Approve"
+  },
+  {
+   "fieldname": "committee_notes",
+   "fieldtype": "Small Text",
+   "label": "Committee Notes"
+  },
+  {
+   "fieldname": "return_info_section",
+   "fieldtype": "Section Break",
+   "label": "RETURN INFO"
+  },
+  {
+   "default": "0",
+   "fieldname": "return",
+   "fieldtype": "Check",
+   "label": "Return"
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Return to",
+   "options": "User"
+  },
+  {
+   "fieldname": "reason_of_return",
+   "fieldtype": "Data",
+   "label": "Reason of Return"
+  },
+  {
+   "fieldname": "beneficiary_bank_account",
+   "fieldtype": "Data",
+   "label": "Beneficiary Bank Account"
+  },
+  {
+   "fieldname": "renewal_date",
+   "fieldtype": "Date",
+   "label": "Renewal Date"
   }
  ],
- "modified": "2021-08-08 13:47:16.663438",
+ "modified": "2021-08-12 06:20:05.443532",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Beneficiary",
@@ -626,20 +569,7 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
-   "set_user_permissions": 1,
    "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "read": 1,
-   "role": "Accounts User",
-   "write": 1
-  },
-  {
-   "create": 1,
-   "read": 1,
-   "role": "Beneficiary",
    "write": 1
   },
   {
@@ -650,11 +580,12 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Separation Employee",
+   "role": "Beneficiary",
    "share": 1,
    "write": 1
   }
  ],
+ "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

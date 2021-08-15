@@ -5,28 +5,34 @@
  "field_order": [
   "section_break_1",
   "item_code",
+  "item_name",
   "item_account",
   "type",
   "state",
-  "amount",
-  "warehouse",
-  "column_break_10",
-  "item_name",
   "qty",
   "rate",
+  "amount",
+  "warehouse",
+  "stock_qty",
+  "column_break_10",
   "asset_category",
   "uom",
+  "valuation_rate",
+  "conversion_factor",
   "from_date",
   "to_date",
   "number_of_months",
   "frequency",
   "aid_type",
   "rent_number",
+  "income_account",
+  "expense_account",
+  "is_fixed_asset",
   "accounting_dimensions_section",
   "cost_center",
   "project",
   "column_break_20",
-  "activity",
+  "project_activities",
   "section_break_54",
   "notes",
   "aid_no"
@@ -49,7 +55,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "\u0646\u0648\u0639 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
-   "options": "\u0646\u0642\u062f\u064a\n\u0639\u064a\u0646\u064a",
+   "options": "Cash\nMaterial",
    "reqd": 1
   },
   {
@@ -81,12 +87,6 @@
    "fieldtype": "Link",
    "label": "\u0627\u0644\u0645\u0634\u0631\u0648\u0639",
    "options": "Project"
-  },
-  {
-   "fieldname": "activity",
-   "fieldtype": "Link",
-   "label": "\u0627\u0644\u0646\u0634\u0627\u0637",
-   "options": "Activity"
   },
   {
    "fieldname": "frequency",
@@ -124,14 +124,14 @@
    "options": "Item"
   },
   {
-   "depends_on": "eval:doc.type==\"\u0639\u064a\u0646\u064a\"",
+   "depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "warehouse",
    "fieldtype": "Link",
    "label": "Warehouse",
    "options": "Warehouse"
   },
   {
-   "depends_on": "eval:doc.type==\"\u0639\u064a\u0646\u064a\"",
+   "depends_on": "eval:doc.type==\"Material\"",
    "fetch_from": "item_code.item_name",
    "fieldname": "item_name",
    "fieldtype": "Data",
@@ -152,7 +152,7 @@
    "fieldtype": "Section Break"
   },
   {
-   "depends_on": "eval:doc.type==\"\u0639\u064a\u0646\u064a\"",
+   "depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "qty",
    "fieldtype": "Float",
    "label": "Quantity"
@@ -166,13 +166,12 @@
    "fieldtype": "Column Break"
   },
   {
-   "depends_on": "eval:doc.type==\"\u0646\u0642\u062f\u064a\"",
    "fieldname": "amount",
    "fieldtype": "Currency",
    "label": "Amount"
   },
   {
-   "depends_on": "eval:doc.type==\"\u0639\u064a\u0646\u064a\"",
+   "depends_on": "eval:doc.type==\"Material\"",
    "fetch_from": "item_code.asset_category",
    "fieldname": "asset_category",
    "fieldtype": "Link",
@@ -180,7 +179,7 @@
    "options": "Asset Category"
   },
   {
-   "depends_on": "eval:doc.type==\"\u0639\u064a\u0646\u064a\"",
+   "depends_on": "eval:doc.type==\"Material\"",
    "fetch_from": "item_code.stock_uom",
    "fieldname": "uom",
    "fieldtype": "Link",
@@ -188,20 +187,60 @@
    "options": "UOM"
   },
   {
+   "depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "rate",
    "fieldtype": "Currency",
    "label": "Rate"
   },
   {
-   "depends_on": "eval:doc.type==\"\u0646\u0642\u062f\u064a\"",
+   "depends_on": "eval:doc.type==\"Cash\"",
    "fieldname": "aid_type",
    "fieldtype": "Link",
    "label": "\u0627\u0644\u0646\u0648\u0639",
    "options": "Aid Type"
+  },
+  {
+   "fieldname": "stock_qty",
+   "fieldtype": "Float",
+   "label": "Stock Qty"
+  },
+  {
+   "fieldname": "valuation_rate",
+   "fieldtype": "Currency",
+   "label": "Valuation Rate"
+  },
+  {
+   "fieldname": "conversion_factor",
+   "fieldtype": "Float",
+   "label": "UOM Conversion Factor"
+  },
+  {
+   "fieldname": "income_account",
+   "fieldtype": "Link",
+   "label": "Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "expense_account",
+   "fieldtype": "Link",
+   "label": "Expense Account",
+   "options": "Account"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_fixed_asset",
+   "fieldtype": "Check",
+   "label": "Is Fixed Asset"
+  },
+  {
+   "fieldname": "project_activities",
+   "fieldtype": "Link",
+   "label": "\u0627\u0644\u0646\u0634\u0627\u0637",
+   "options": "Project Activities"
   }
  ],
  "istable": 1,
- "modified": "2021-08-07 19:18:51.227887",
+ "modified": "2021-08-12 00:42:24.568817",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Aid Details",

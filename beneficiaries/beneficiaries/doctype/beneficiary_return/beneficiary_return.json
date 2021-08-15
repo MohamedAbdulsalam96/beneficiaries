@@ -16,25 +16,25 @@
   {
    "fieldname": "beneficiary",
    "fieldtype": "Link",
-   "label": "\u0627\u0644\u0645\u0633\u062a\u0641\u064a\u062f",
+   "label": "Beneficiary",
    "options": "Beneficiary"
   },
   {
    "fieldname": "employee",
    "fieldtype": "Link",
-   "label": "\u0645\u062d\u0627\u0644\u0629 \u0625\u0644\u0649",
+   "label": "Return To",
    "options": "User"
   },
   {
    "fetch_from": "employee.first_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
-   "label": "\u0627\u0633\u0645 \u0627\u0644\u0645\u0648\u0638\u0641"
+   "label": "Employee"
   },
   {
    "fieldname": "reason",
    "fieldtype": "Small Text",
-   "label": "\u0633\u0628\u0628 \u0627\u0644\u0625\u062d\u0627\u0644\u0629"
+   "label": "Reason of Return"
   },
   {
    "fieldname": "naming_series",
@@ -46,10 +46,10 @@
    "default": "Now",
    "fieldname": "date_of_return",
    "fieldtype": "Datetime",
-   "label": "\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0625\u062d\u0627\u0644\u0629"
+   "label": "Return Date"
   }
  ],
- "modified": "2021-08-03 19:42:44.045975",
+ "modified": "2021-08-12 05:43:13.687936",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Beneficiary Return",

@@ -93,10 +93,16 @@ def get_data():
 					"description":_("Beneficiary Aids Entry"),
 					"onboard": 1,
 				},
+					{
+					"type": "doctype",
+					"name": "Beneficiary logs",
+					"description":_("Beneficiary logs"),
+					"onboard": 1,
+				},
 			{
 					"type": "doctype",
-					"name": "Beneficiary Aids Payment",
-					"description":_("Beneficiary Aids Payment"),
+					"name": "Beneficiary Aid Payment",
+					"description":_("Beneficiary Aid Payment"),
 					"onboard": 1,
 				},
 								

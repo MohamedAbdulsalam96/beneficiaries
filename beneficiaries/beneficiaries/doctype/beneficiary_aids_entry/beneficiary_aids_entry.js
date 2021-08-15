@@ -1,6 +1,37 @@
 // Copyright (c) 2021, Baida and contributors
 // For license information, please see license.txt
+
+
+frappe.ui.form.on('Aids Entry Details', 'item_code', function(frm, cdt, cdn) {
+
+	var u = locals[cdt][cdn];
+	if(!u || !u.item_code)
+		return;
+
+	frappe.call({
+		method: "beneficiaries.beneficiaries.doctype.beneficiary_aids_entry.beneficiary_aids_entry.get_item_detail",
+		args: {item_code: u.item_code, is_fixed_asset: u.is_fixed_asset, asset_category: u.asset_category, 
+			company: frm.doc.company, type: frm.doc.type,},
+		freeze: true,
+		callback: function(msg) {
+			console.log(msg);
+			if(msg && msg.message){
+				u.warehouse = msg.message.warehouse;
+				u.income_account = msg.message.income_account;
+				u.expense_account = msg.message.expense_account;
+				console.log( msg.message.expense_account);
+				u.cost_center = msg.message.cost_center;
+				u.project = msg.message.project;
+				u.project_activities = msg.message.project_activities;
+				u.valuation_rate = msg.message.valuation_rate;
+				u.rate=msg.message.valuation_rate;
+			    frm.refresh_fields();
+			}			
+		}
+	}); 
+});
 frappe.ui.form.on('Beneficiary Aids Entry', {
+
 	refresh: function(frm) {
 	
 	frm.set_df_property("get_beneficiaries", "hidden", frm.doc.docstatus ? 1:0);
@@ -41,69 +72,67 @@ frappe.ui.form.on('Beneficiary Aids Entry', {
 		return frappe.call({
 			doc: frm.doc,
 			method: 'fill_beneficiary',
+			
 			callback: function(r) {
 				if (r.docs[0].items){
 					frm.save();
 					frm.refresh();
-					if(frm.doc.type=="عيني"){
-						$.each(frm.doc.items,function(i,u){
-							// if(u.uom == null){return;}
-						frappe.call({
-							method: "beneficiaries.beneficiaries.doctype.beneficiary_aids_entry.beneficiary_aids_entry.get_conversion_factor",
-							
-							args: {
-								item_code: u.item_code,
-								uom : u.uom,
-							},
-							freeze: true,
-							callback: function(msg) {
-								if(!msg || !msg.message){msg.message = 1;}
-								u.conversion_factor = msg.message;
-								u.qty=flt(u.qty);
-								u.stock_qty = flt(u.qty) * flt(msg.message);
-								frm.refresh_fields();			
-							}
-						});
-					});
-				
 					$.each(frm.doc.items,function(i,u){
-						// var u = locals[cdt][cdn];
-						if(!u || !u.item_code)			return;
-												
-								frappe.call({
-									method: "beneficiaries.beneficiaries.doctype.beneficiary_aids_entry.beneficiary_aids_entry.get_item_detail",
-									args: {item_code: u.item_code, is_fixed_asset: u.is_fixed_asset,asset_category:u.asset_category,
-										company: frm.doc.company, type: frm.doc.type,},
-									freeze: true,
-									callback: function(msg) {
-										console.log(msg);
-										if(msg && msg.message){
-											u.warehouse = msg.message.warehouse;
-											u.income_account = msg.message.income_account;
-											u.expense_account = msg.message.expense_account;
-											console.log( msg.message.expense_account);
-											if(frm.doc.type == 'Asset')
-												u.asset_location = msg.message.asset_location;
-											u.cost_center = msg.message.cost_center;
-											u.project = msg.message.project;
-											u.project_activities = msg.message.project_activities;
-											u.valuation_rate = msg.message.valuation_rate;
-											
-											frm.refresh_fields();
-										}			
-									}
-								}); 
-							});
-						}	
-			}
-			}
+					frappe.call({
+						method: "beneficiaries.beneficiaries.doctype.beneficiary_aids_entry.beneficiary_aids_entry.get_item_detail",
+						args: {item_code: u.item_code, is_fixed_asset: u.is_fixed_asset, asset_category: u.asset_category, 
+							company: frm.doc.company, type: frm.doc.type,},
+						freeze: true,
+						callback: function(msg) {
+							console.log(msg);
+							if(msg && msg.message){
+								u.warehouse = msg.message.warehouse;
+								u.income_account = msg.message.income_account;
+								u.expense_account = msg.message.expense_account;
+								console.log( msg.message.expense_account);
+								u.cost_center = msg.message.cost_center;
+								u.project = msg.message.project;
+								u.project_activities = msg.message.project_activities;
+								u.valuation_rate = msg.message.valuation_rate;
+								u.rate=msg.message.valuation_rate;
+								frm.save();
+								frm.refresh_fields();
+							}			
+						}
+					});
+				}); 
+			// callback: function(msg) {
+				
+			// 	if(msg && msg.message){
+			// 		frm.doc.items.forEach(function(d){var i=0;
+			// 			d.item_code = msg.message[i].item_code;
+			// 			console.log(d.item_code);
+			// 		i++;
+			// 		frm.refresh_field("item_code");
+			// 		});
+			// 		frm.save();
+			// 		frm.refresh();
+			// 		frm.refresh_fields();
+			// 	}		
+			
+			 } }
+			
 		})
 	}
 });
+
+	
 frappe.ui.form.on("Beneficiary Aids Entry", 
 	'validate',function(frm){
+		console.log("Hiiii");
+		$.each(frm.doc.items,function(i,row){
+			console.log("Hiiii");
+	var item=row.item_code;
+	row.item_code=item;
+	frm.refresh_field("item_code");
 	
 		});
+	});
 	
 
 cur_frm.cscript.update_row_amount = function(frm, cdt, cdn){
@@ -119,37 +148,8 @@ cur_frm.cscript.update_total = function(frm){
 		amount += d.amount;
 	});
 		
-	// frm.set_value('total_qty', qty || 0);
-	// frm.set_value('total', amount || 0);
+	frm.set_value('total_qty', qty || 0);
+	frm.set_value('total', amount || 0);
 	frm.refresh_fields();
 }
-
-
-// frappe.ui.form.on('Beneficiary Aids Entry', {
-// // 	setup: function(frm) {
-// //     	frm.fields_dict['beneficiaries'].grid.get_field('beneficiary').get_query = function(frm, cdt, cdn) {
-// // 			var child = locals[cdt][cdn];
-// // 			return{
-// // 				filters: {
-// // 					"type": frm.type
-// // 				}
-// // 			}
-// // 	    }	   
-// // 	}
-// // })
-
-
-// frappe.ui.form.on('Beneficiary Aids Entry', {
-// 	refresh(frm) {
-// 	cur_frm.set_query("beneficiary", "beneficiaries", function(doc, cdt, cdn) {
-// 	    var d = locals[cdt][cdn];
-//     	return{
-// 	    	filters: [
-		    
-// 		    	['Beneficiary', 'type', '=', d.type]
-// 	    	]
-//             	}
-//         });
-// 	}
-// })
 

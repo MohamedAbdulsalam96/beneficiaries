@@ -14,16 +14,17 @@
    "fieldname": "needs",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Needs",
+   "label": "Need",
    "unique": 1
   },
   {
    "fieldname": "notes",
    "fieldtype": "Data",
-   "label": "Notes"
+   "in_list_view": 1,
+   "label": "Note"
   }
  ],
- "modified": "2021-08-08 11:45:53.291063",
+ "modified": "2021-08-15 09:21:42.230549",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Additional Need",

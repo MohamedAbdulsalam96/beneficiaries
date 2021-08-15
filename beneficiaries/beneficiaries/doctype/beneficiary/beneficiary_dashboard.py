@@ -10,5 +10,12 @@ def get_data():
 				'label': _('Beneficiary Return'),
 				'items': ['Beneficiary Return']
 			},
-		]
+	
+			{
+				'label': _('Beneficiary logs'),
+				'items': ['Beneficiary logs']
+			},
+		
+		 ]
+		
 	}
