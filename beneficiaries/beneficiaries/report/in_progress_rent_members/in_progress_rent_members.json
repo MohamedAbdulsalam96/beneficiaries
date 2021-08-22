@@ -1,0 +1,28 @@
+{
+ "add_total_row": 0,
+ "creation": "2021-08-18 09:56:29.029554",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"filters\":[[\"Beneficiary\",\"status\",\"=\",\"In Progress\",false],[\"Beneficiary\",\"number_of_needed_members_in_family\",\">\",2,false],[\"Aid Details\",\"type\",\"!=\",\"Cash\",false],[\"Beneficiary\",\"home_type\",\"=\",\"Rent\",false],[\"Beneficiary\",\"date_of_decision\",\"=\",\"2021-08-01\",false]],\"fields\":[[\"workflow_state\",\"Beneficiary\"],[\"name\",\"Beneficiary\"],[\"docstatus\",\"Beneficiary\"],[\"date_of_decision\",\"Beneficiary\"],[\"naming_series\",\"Beneficiary\"],[\"beneficiary_request\",\"Beneficiary\"],[\"status\",\"Beneficiary\"],[\"beneficiary_state\",\"Beneficiary\"],[\"address\",\"Beneficiary\"],[\"phone\",\"Beneficiary\"],[\"mobile\",\"Beneficiary\"],[\"number_of_needed_members_in_family\",\"Beneficiary\"],[\"rent_base\",\"Beneficiary\"],[\"fee_total\",\"Beneficiary\"],[\"fee_in_month\",\"Fee Type\"],[\"type\",\"Aid Details\"],[\"marital_status\",\"Beneficiary\"],[\"nationality\",\"Beneficiary\"],[\"deserve_according_to_base\",\"Beneficiary\"],[\"home_type\",\"Beneficiary\"]],\"order_by\":\"`tabBeneficiary`.`modified` desc\",\"page_length\":100,\"column_widths\":{\"workflow_state\":120,\"name\":120,\"date_of_decision\":120,\"naming_series\":120,\"beneficiary_request\":120,\"status\":120,\"beneficiary_state\":120,\"address\":120,\"phone\":120,\"mobile\":120,\"number_of_needed_members_in_family\":120,\"rent_base\":120,\"fee_total\":120,\"Fee Type:fee_in_month\":120,\"Aid Details:type\":120,\"marital_status\":120,\"nationality\":120,\"deserve_according_to_base\":120,\"home_type\":120},\"group_by\":null}",
+ "modified": "2021-08-18 10:13:20.262076",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "In Progress Rent Members",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Beneficiary",
+ "report_name": "In Progress Rent Members ",
+ "report_type": "Report Builder",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Beneficiary"
+  }
+ ]
+}

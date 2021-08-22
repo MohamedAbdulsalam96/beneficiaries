@@ -8,7 +8,8 @@
   "naming_series",
   "fee_type",
   "fee_in_year",
-  "fee_in_month"
+  "fee_in_month",
+  "attachment_of__fee"
  ],
  "fields": [
   {
@@ -36,10 +37,16 @@
    "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Average Fee In Month"
+  },
+  {
+   "fieldname": "attachment_of__fee",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Attachment of  Fee"
   }
  ],
  "istable": 1,
- "modified": "2021-08-12 05:52:47.476816",
+ "modified": "2021-08-17 10:28:39.410790",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Fee Type",

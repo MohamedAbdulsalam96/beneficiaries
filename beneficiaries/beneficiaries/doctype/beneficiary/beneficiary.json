@@ -5,12 +5,16 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "naming_series",
   "beneficiary_request",
   "status",
   "column_break_3",
-  "date_of_registration",
-  "renewal_date",
   "company",
+  "date_of_decision",
+  "renewal_date",
+  "diff",
+  "renewal",
+  "re",
   "personal_details_section",
   "beneficiary_name",
   "beneficiary_account",
@@ -22,14 +26,21 @@
   "nationality",
   "column_break_9",
   "territory",
+  "beneficiary_state",
   "address",
   "phone",
   "mobile",
   "email",
+  "owner",
   "default_password",
   "duration_of_benefit_from_the_association",
   "identification_details_section",
-  "identification",
+  "id_type",
+  "the_number",
+  "attach_of_id",
+  "column_break_30",
+  "date_of_issue",
+  "date_of_expired",
   "address_and_contact_section",
   "address_html",
   "contact_html",
@@ -57,6 +68,7 @@
   "column_break_48",
   "the_number_of_professional_workers",
   "the_number_of_household_workers",
+  "number_of_unemployed_members",
   "beneficiary_basic_needs_section",
   "basic_needs",
   "beneficiary_additional_details_section",
@@ -83,6 +95,9 @@
   "auditor_approve",
   "auditor_notes",
   "committee_opinion_details_section",
+  "beneficiaries_manager_approve",
+  "beneficiary_manager_notes",
+  "column_break_92",
   "committee_approve",
   "committee_notes",
   "return_info_section",
@@ -94,229 +109,258 @@
   {
    "fieldname": "beneficiary_request",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Beneficiary Request",
    "options": "Beneficiary Request"
   },
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "ignore_user_permissions": 1,
    "label": "Status",
    "options": "In Progress\nSuspended"
   },
   {
    "fieldname": "company",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Company",
    "options": "Company"
   },
   {
-   "fieldname": "date_of_registration",
-   "fieldtype": "Date",
-   "label": "Date of Registration"
-  },
-  {
    "fieldname": "column_break_3",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "ignore_user_permissions": 1
   },
   {
    "collapsible": 1,
    "fieldname": "personal_details_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "PERSONAL DETAILS"
   },
   {
    "fieldname": "beneficiary_name",
    "fieldtype": "Data",
+   "ignore_user_permissions": 1,
    "label": "Beneficiary Name",
    "unique": 1
   },
   {
    "fieldname": "beneficiary_account",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Beneficiary Account",
    "options": "Account"
   },
   {
    "fieldname": "column_break_9",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "ignore_user_permissions": 1
   },
   {
    "fieldname": "bank_account",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Bank Account",
    "options": "Bank Account"
   },
   {
    "fieldname": "account_no",
    "fieldtype": "Data",
+   "ignore_user_permissions": 1,
    "label": "Account No"
   },
   {
    "fieldname": "gender",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Gender",
    "options": "Gender"
   },
   {
    "fieldname": "phone",
    "fieldtype": "Data",
+   "ignore_user_permissions": 1,
    "label": "Phone",
    "options": "Phone"
   },
   {
    "fieldname": "mobile",
    "fieldtype": "Data",
+   "ignore_user_permissions": 1,
    "label": "Mobile",
    "options": "Phone"
   },
   {
    "fieldname": "email",
    "fieldtype": "Data",
+   "ignore_user_permissions": 1,
    "label": "Email",
    "options": "Email"
   },
   {
    "fieldname": "default_password",
    "fieldtype": "Data",
-   "label": "Default Password"
+   "ignore_user_permissions": 1,
+   "label": "Default Password",
+   "read_only": 1
   },
   {
    "fieldname": "marital_status",
    "fieldtype": "Select",
+   "ignore_user_permissions": 1,
    "label": "Marital Status",
    "options": "Single\nMarried\nDivorced\nWidow"
   },
   {
    "fieldname": "nationality",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Nationality",
    "options": "Nationality"
   },
   {
    "fieldname": "territory",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Territory",
    "options": "Territory"
   },
   {
    "fieldname": "address",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Address",
    "options": "Beneficiary Address"
   },
   {
    "fieldname": "duration_of_benefit_from_the_association",
    "fieldtype": "Data",
+   "ignore_user_permissions": 1,
    "label": "Duration of Benefit from The Association"
   },
   {
    "collapsible": 1,
    "fieldname": "identification_details_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "IDENTIFICATION DETAILS"
-  },
-  {
-   "fieldname": "identification",
-   "fieldtype": "Table",
-   "label": "Identification",
-   "options": "Identification Type"
   },
   {
    "collapsible": 1,
    "fieldname": "address_and_contact_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "ADDRESS AND CONTACT",
    "options": "fa fa-map-marker"
   },
   {
    "fieldname": "address_html",
    "fieldtype": "HTML",
+   "ignore_user_permissions": 1,
    "label": "ADDRESS HTML"
   },
   {
    "fieldname": "contact_html",
    "fieldtype": "HTML",
+   "ignore_user_permissions": 1,
    "label": "CONTACT HTML"
   },
   {
    "collapsible": 1,
    "fieldname": "fee_details_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "FEE DETAILS"
   },
   {
    "fieldname": "fees",
    "fieldtype": "Table",
+   "ignore_user_permissions": 1,
    "label": "Fee Type",
    "options": "Fee Type"
   },
   {
    "fieldname": "fee_total",
    "fieldtype": "Currency",
+   "ignore_user_permissions": 1,
    "label": "Fee Total"
   },
   {
    "collapsible": 1,
    "fieldname": "obligation_details_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "OBLIGATION DETAILS"
   },
   {
    "fieldname": "beneficiary_obligation",
    "fieldtype": "Table",
+   "ignore_user_permissions": 1,
    "label": "Beneficiary Obligation",
    "options": "Beneficiary Obligation"
   },
   {
    "fieldname": "obligations_total",
    "fieldtype": "Currency",
+   "ignore_user_permissions": 1,
    "label": "Obligations Total"
   },
   {
    "fieldname": "home_details_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "HOME DETAILS"
   },
   {
    "fieldname": "home_type",
    "fieldtype": "Select",
+   "ignore_user_permissions": 1,
    "label": "Home type",
    "options": "Own\nRent"
   },
   {
    "fieldname": "home_attach",
    "fieldtype": "Attach",
+   "ignore_user_permissions": 1,
    "label": "Home Attach"
   },
   {
    "fieldname": "number_of_rooms",
    "fieldtype": "Int",
+   "ignore_user_permissions": 1,
    "label": "Number of Rooms"
   },
   {
    "fieldname": "home_state",
    "fieldtype": "Select",
+   "ignore_user_permissions": 1,
    "label": "Home State",
    "options": "Good\nNormal\nBad"
   },
   {
    "fieldname": "column_break_38",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "ignore_user_permissions": 1
   },
   {
    "fieldname": "the_number_of_licenses_and_commercial_records",
    "fieldtype": "Int",
+   "ignore_user_permissions": 1,
    "label": "The Number of Licenses and Commercial Records"
   },
   {
    "collapsible": 1,
    "fieldname": "family_owns_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "FAMILY OWNS"
   },
   {
    "fieldname": "family_own",
    "fieldtype": "Table",
+   "ignore_user_permissions": 1,
    "label": "Family own",
    "options": "Family own"
   },
@@ -324,11 +368,13 @@
    "collapsible": 1,
    "fieldname": "family_members_details_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "FAMILY MEMBERS DETAILS"
   },
   {
    "fieldname": "family",
    "fieldtype": "Table",
+   "ignore_user_permissions": 1,
    "label": "Family Members Info",
    "options": "Family Members Info"
   },
@@ -336,46 +382,55 @@
    "collapsible": 1,
    "fieldname": "family_details_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "FAMILY DETAILS"
   },
   {
    "fieldname": "number_of_family",
    "fieldtype": "Int",
+   "ignore_user_permissions": 1,
    "label": "Number of Family"
   },
   {
    "fieldname": "number_of_wives",
    "fieldtype": "Int",
+   "ignore_user_permissions": 1,
    "label": "Number of Wives"
   },
   {
    "fieldname": "number_of_needed_members_in_family",
    "fieldtype": "Int",
+   "ignore_user_permissions": 1,
    "label": "Number Of Member That Live In Home"
   },
   {
    "fieldname": "column_break_48",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "ignore_user_permissions": 1
   },
   {
    "fieldname": "the_number_of_professional_workers",
    "fieldtype": "Int",
+   "ignore_user_permissions": 1,
    "label": "The Number of Professional Workers"
   },
   {
    "fieldname": "the_number_of_household_workers",
    "fieldtype": "Int",
+   "ignore_user_permissions": 1,
    "label": "The Number of Household Workers"
   },
   {
    "collapsible": 1,
    "fieldname": "beneficiary_basic_needs_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "BENEFICIARY BASIC NEEDS"
   },
   {
    "fieldname": "basic_needs",
    "fieldtype": "Table",
+   "ignore_user_permissions": 1,
    "label": "Basic Needs",
    "options": "Beneficiary Basic Need"
   },
@@ -383,11 +438,13 @@
    "collapsible": 1,
    "fieldname": "beneficiary_additional_details_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "BENEFICIARY ADDITIONAL DETAILS"
   },
   {
    "fieldname": "beneficiary_additional_need",
    "fieldtype": "Table",
+   "ignore_user_permissions": 1,
    "label": "Additional Need",
    "options": "Beneficiary Additional Need"
   },
@@ -395,68 +452,81 @@
    "collapsible": 1,
    "fieldname": "beneficiary_notes_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "BENEFICIARY NOTES"
   },
   {
    "fieldname": "beneficiary_notes",
    "fieldtype": "Small Text",
+   "ignore_user_permissions": 1,
    "label": "Notes"
   },
   {
    "collapsible": 1,
    "fieldname": "due_according_to_the_system_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "DUE ACCORDING TO THE SYSTEM"
   },
   {
    "fieldname": "live_base",
    "fieldtype": "Currency",
+   "ignore_user_permissions": 1,
    "label": "Live Base"
   },
   {
    "fieldname": "rent_base",
    "fieldtype": "Currency",
+   "ignore_user_permissions": 1,
    "label": "Rent Base"
   },
   {
    "default": "0",
    "fieldname": "deserve_according_to_base",
    "fieldtype": "Check",
+   "ignore_user_permissions": 1,
    "label": "Deserve According To Base"
   },
   {
    "fieldname": "column_break_61",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "ignore_user_permissions": 1
   },
   {
    "fieldname": "rent_in_year",
    "fieldtype": "Currency",
+   "ignore_user_permissions": 1,
    "label": "Rent In Year"
   },
   {
    "fieldname": "rent_in_five_year",
    "fieldtype": "Currency",
+   "ignore_user_permissions": 1,
    "label": "Rent In Five Year"
   },
   {
    "fieldname": "decision_details_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "DECISION DETAILS"
   },
   {
    "fieldname": "aid_details",
    "fieldtype": "Table",
+   "ignore_user_permissions": 1,
    "label": "Aid Details",
    "options": "Aid Details"
   },
   {
    "fieldname": "aid_approval",
    "fieldtype": "Button",
+   "ignore_user_permissions": 1,
    "label": "Aid Approval"
   },
   {
    "fieldname": "display",
    "fieldtype": "Table",
+   "ignore_user_permissions": 1,
    "label": "Aids Display",
    "options": "Display Aids"
   },
@@ -464,11 +534,13 @@
    "collapsible": 1,
    "fieldname": "review_and_specialist_opinions_section",
    "fieldtype": "Section Break",
+   "ignore_user_permissions": 1,
    "label": "REVIEW AND SPECIALIST OPINIONS"
   },
   {
    "fieldname": "research_name",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Researcher",
    "options": "User"
   },
@@ -476,20 +548,24 @@
    "default": "0",
    "fieldname": "researcher_approve",
    "fieldtype": "Check",
+   "ignore_user_permissions": 1,
    "label": "Researcher Approve"
   },
   {
    "fieldname": "researcher_notes",
    "fieldtype": "Small Text",
+   "ignore_user_permissions": 1,
    "label": "Researcher Notes"
   },
   {
    "fieldname": "column_break_72",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "ignore_user_permissions": 1
   },
   {
    "fieldname": "auditor",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Auditor",
    "options": "User"
   },
@@ -497,11 +573,13 @@
    "default": "0",
    "fieldname": "auditor_approve",
    "fieldtype": "Check",
+   "ignore_user_permissions": 1,
    "label": "Auditor Approve"
   },
   {
    "fieldname": "auditor_notes",
    "fieldtype": "Small Text",
+   "ignore_user_permissions": 1,
    "label": "Auditor Notes"
   },
   {
@@ -546,15 +624,126 @@
   {
    "fieldname": "beneficiary_bank_account",
    "fieldtype": "Data",
+   "ignore_user_permissions": 1,
    "label": "Beneficiary Bank Account"
   },
   {
    "fieldname": "renewal_date",
    "fieldtype": "Date",
+   "ignore_user_permissions": 1,
    "label": "Renewal Date"
+  },
+  {
+   "fieldname": "owner",
+   "fieldtype": "Data",
+   "ignore_user_permissions": 1,
+   "label": "Owner",
+   "options": "Email",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "renewal",
+   "fieldtype": "Check",
+   "ignore_user_permissions": 1,
+   "label": "Renewal"
+  },
+  {
+   "fieldname": "diff",
+   "fieldtype": "Int",
+   "ignore_user_permissions": 1,
+   "label": "Remain Period To Renewal ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "the_number",
+   "fieldtype": "Data",
+   "ignore_user_permissions": 1,
+   "label": "Identification No",
+   "length": 10,
+   "options": "Phone"
+  },
+  {
+   "fieldname": "column_break_30",
+   "fieldtype": "Column Break",
+   "ignore_user_permissions": 1
+  },
+  {
+   "fieldname": "date_of_issue",
+   "fieldtype": "Date",
+   "ignore_user_permissions": 1,
+   "label": "Date Of Issue"
+  },
+  {
+   "fieldname": "date_of_expired",
+   "fieldtype": "Date",
+   "ignore_user_permissions": 1,
+   "label": "Date Of Expired"
+  },
+  {
+   "fieldname": "id_type",
+   "fieldtype": "Select",
+   "ignore_user_permissions": 1,
+   "label": "Identification Type",
+   "options": "Personal Card\nPassport"
+  },
+  {
+   "fieldname": "attach_of_id",
+   "fieldtype": "Attach",
+   "ignore_user_permissions": 1,
+   "label": "Attach of Id"
+  },
+  {
+   "fieldname": "beneficiary_state",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Beneficiary State",
+   "options": "State"
+  },
+  {
+   "fieldname": "date_of_decision",
+   "fieldtype": "Date",
+   "ignore_user_permissions": 1,
+   "label": "Date of Decision"
+  },
+  {
+   "fieldname": "number_of_unemployed_members",
+   "fieldtype": "Int",
+   "ignore_user_permissions": 1,
+   "label": "Number of Unemployed Members"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "ignore_user_permissions": 1,
+   "label": "Naming Series",
+   "options": "B-.YYYY.-",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "beneficiaries_manager_approve",
+   "fieldtype": "Check",
+   "label": "Beneficiaries Manager Approve"
+  },
+  {
+   "fieldname": "beneficiary_manager_notes",
+   "fieldtype": "Small Text",
+   "label": "Beneficiary Manager Notes"
+  },
+  {
+   "fieldname": "column_break_92",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "re",
+   "fieldtype": "Data",
+   "ignore_user_permissions": 1,
+   "label": "Has Decision",
+   "read_only": 1
   }
  ],
- "modified": "2021-08-12 06:20:05.443532",
+ "modified": "2021-08-21 02:20:34.243213",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Beneficiary",

@@ -6,7 +6,6 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
-  "aid",
   "type",
   "aid_type",
   "from_date",
@@ -15,9 +14,19 @@
   "posting_date",
   "posting_time",
   "company",
-  "project",
+  "accounting_dimension_section",
   "cost_center",
+  "column_break_14",
+  "project",
   "activity",
+  "accounting_section",
+  "beneficiary_account",
+  "column_break_16",
+  "account_paid_from",
+  "material_aids_section",
+  "ben_mat",
+  "column_break_21",
+  "aid_material",
   "beneficiaries_section",
   "get_beneficiaries",
   "number_of_beneficiaries",
@@ -42,7 +51,7 @@
   {
    "fieldname": "get_beneficiaries",
    "fieldtype": "Button",
-   "label": "Get Beneficiaries"
+   "label": "Get Aids"
   },
   {
    "fieldname": "naming_series",
@@ -54,12 +63,12 @@
   {
    "fieldname": "beneficiaries_section",
    "fieldtype": "Section Break",
-   "label": "Beneficiaries"
+   "label": "BENEFICIARIES"
   },
   {
    "fieldname": "number_of_beneficiaries",
    "fieldtype": "Int",
-   "label": "Number of Beneficiaries",
+   "label": "Number of Aids",
    "read_only": 1
   },
   {
@@ -94,24 +103,19 @@
    "read_only": 1
   },
   {
-   "fieldname": "aid",
-   "fieldtype": "Link",
-   "label": " Item",
-   "options": "Item"
-  },
-  {
    "fieldname": "type",
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Type",
-   "options": "Cash\nMaterial",
+   "options": "Cash\nCash Material\nMaterial",
    "reqd": 1
   },
   {
    "default": "Now",
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Posting Date"
+   "label": "Posting Date",
+   "read_only": 1
   },
   {
    "default": "Baida",
@@ -124,7 +128,8 @@
    "default": "Now",
    "fieldname": "posting_time",
    "fieldtype": "Time",
-   "label": "Posting Time"
+   "label": "Posting Time",
+   "read_only": 1
   },
   {
    "fieldname": "items",
@@ -144,6 +149,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "total_qty",
    "fieldtype": "Float",
    "label": "Total Quantity"
@@ -156,10 +162,64 @@
    "fieldname": "total",
    "fieldtype": "Currency",
    "label": "Total"
+  },
+  {
+   "fieldname": "accounting_section",
+   "fieldtype": "Section Break",
+   "label": "ACCOUNTING"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Cash\"|| doc.type==\"Cash Material\"",
+   "fieldname": "account_paid_from",
+   "fieldtype": "Link",
+   "label": "Account Paid From",
+   "options": "Account"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "beneficiary_account",
+   "fieldtype": "Link",
+   "label": "Beneficiary Account",
+   "options": "Account"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "accounting_dimension_section",
+   "fieldtype": "Section Break",
+   "label": "ACCOUNTING DIMENSION"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Material\"",
+   "fieldname": "material_aids_section",
+   "fieldtype": "Section Break",
+   "label": "MATERIAL AIDs"
+  },
+  {
+   "fieldname": "ben_mat",
+   "fieldtype": "Table",
+   "label": "Beneficiary For Material Aids",
+   "options": "Beneficiary For Material Aids"
+  },
+  {
+   "fieldname": "column_break_21",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "aid_material",
+   "fieldtype": "Table",
+   "label": "AID Material",
+   "options": "AID Material"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-08-12 05:39:35.921925",
+ "modified": "2021-08-18 20:45:02.804146",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Beneficiary Aids Entry",

@@ -4,36 +4,16 @@
  "engine": "InnoDB",
  "field_order": [
   "section_break_1",
-  "item_code",
-  "item_name",
-  "item_account",
   "type",
   "state",
-  "qty",
-  "rate",
   "amount",
-  "warehouse",
-  "stock_qty",
-  "column_break_10",
-  "asset_category",
-  "uom",
-  "valuation_rate",
-  "conversion_factor",
   "from_date",
   "to_date",
   "number_of_months",
+  "column_break_10",
   "frequency",
   "aid_type",
   "rent_number",
-  "income_account",
-  "expense_account",
-  "is_fixed_asset",
-  "accounting_dimensions_section",
-  "cost_center",
-  "project",
-  "column_break_20",
-  "project_activities",
-  "section_break_54",
   "notes",
   "aid_no"
  ],
@@ -42,205 +22,85 @@
    "fieldname": "from_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "\u0645\u0646 \u062a\u0627\u0631\u064a\u062e"
+   "label": "From Date"
   },
   {
    "fieldname": "to_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "\u0627\u0644\u0649 \u062a\u0627\u0631\u064a\u062e"
+   "label": "To Date"
   },
   {
    "fieldname": "type",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "\u0646\u0648\u0639 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
-   "options": "Cash\nMaterial",
+   "label": "Type",
+   "options": "Cash\nCash Material\nMaterial",
    "reqd": 1
   },
   {
    "depends_on": "eval:doc.type==\"\u0633\u062f\u0627\u062f \u062f\u064a\u0646\"",
    "fieldname": "rent_number",
    "fieldtype": "Select",
-   "label": "\u0631\u0642\u0645 \u0627\u0644\u0642\u0633\u0637",
+   "label": "Rent Number",
    "options": "\u0627\u0644\u0642\u0633\u0637 \u0627\u0644\u0623\u0648\u0644\n\u0627\u0644\u0642\u0633\u0637 \u0627\u0644\u062b\u0627\u0646\u064a\n\u0627\u0644\u0642\u0633\u0637 \u0627\u0644\u062b\u0627\u0644\u062b\n\u0627\u0644\u0642\u0633\u0637 \u0627\u0644\u0631\u0627\u0628\u0639\n\u0627\u0644\u0642\u0633\u0637 \u0627\u0644\u062e\u0627\u0645\u0633\n\u0627\u0644\u0642\u0633\u0637 \u0627\u0644\u0633\u0627\u062f\u0633\n\u0627\u0644\u0642\u0633\u0637 \u0627\u0644\u0633\u0627\u0628\u0639\n\u0627\u0644\u0642\u0633\u0637 \u0627\u0644\u062b\u0627\u0645\u0646\n\u0627\u0644\u0642\u0633\u0637 \u0627\u0644\u062a\u0627\u0633\u0639\n\u0627\u0644\u0642\u0633\u0637 \u0627\u0644\u0639\u0627\u0634\u0631"
   },
   {
    "fieldname": "number_of_months",
    "fieldtype": "Int",
-   "label": "\u0639\u062f\u062f \u0627\u0644\u0627\u0634\u0647\u0631",
+   "label": "Number Of Mounth",
    "read_only": 1
   },
   {
    "fieldname": "notes",
    "fieldtype": "Small Text",
-   "label": "\u0645\u0644\u0627\u062d\u0638\u0627\u062a"
-  },
-  {
-   "fieldname": "cost_center",
-   "fieldtype": "Link",
-   "label": "\u0645\u0631\u0643\u0632 \u0627\u0644\u062a\u0643\u0644\u0641\u0629",
-   "options": "Cost Center"
-  },
-  {
-   "fieldname": "project",
-   "fieldtype": "Link",
-   "label": "\u0627\u0644\u0645\u0634\u0631\u0648\u0639",
-   "options": "Project"
+   "label": "Notes"
   },
   {
    "fieldname": "frequency",
    "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "\u0645\u0631\u0627\u062a \u0627\u0644\u0635\u0631\u0641 ",
-   "options": "\u0645\u0631\u0629 \u0648\u0627\u062d\u062f\u0629\n\u0634\u0647\u0631\u064a\u0627\u064b\n\u0643\u0644 \u062b\u0644\u0627\u062b\u0629 \u0623\u0634\u0647\u0631\n\u0643\u0644 \u0633\u062a\u0629 \u0623\u0634\u0647\u0631\n\u0633\u0646\u0648\u064a\u0627\u064b"
+   "label": "Frequency",
+   "options": "\nOnce\nMonthly\nEvery 3 Months\nEvery 6 Months"
   },
   {
    "default": "0",
    "fieldname": "state",
    "fieldtype": "Check",
    "in_list_view": 1,
-   "label": "\u062d\u0627\u0644\u0629 \u0627\u0644\u0635\u0631\u0641",
+   "label": "State Of Exchange",
    "read_only": 1
-  },
-  {
-   "fieldname": "item_account",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "\u062d\u0633\u0627\u0628 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
-   "options": "Account"
   },
   {
    "fieldname": "aid_no",
    "fieldtype": "Int",
-   "label": "\u0631\u0642\u0645 \u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
+   "label": "Aid No",
    "read_only": 1
-  },
-  {
-   "fieldname": "item_code",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "\u0627\u0644\u0645\u0633\u0627\u0639\u062f\u0629",
-   "options": "Item"
-  },
-  {
-   "depends_on": "eval:doc.type==\"Material\"",
-   "fieldname": "warehouse",
-   "fieldtype": "Link",
-   "label": "Warehouse",
-   "options": "Warehouse"
-  },
-  {
-   "depends_on": "eval:doc.type==\"Material\"",
-   "fetch_from": "item_code.item_name",
-   "fieldname": "item_name",
-   "fieldtype": "Data",
-   "label": "Item name"
   },
   {
    "fieldname": "section_break_1",
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "accounting_dimensions_section",
-   "fieldtype": "Section Break",
-   "label": "Accounting Dimensions"
-  },
-  {
-   "depends_on": "eval:doc.type==\"\u0639\u064a\u0646\u064a\"",
-   "fieldname": "section_break_54",
-   "fieldtype": "Section Break"
-  },
-  {
-   "depends_on": "eval:doc.type==\"Material\"",
-   "fieldname": "qty",
-   "fieldtype": "Float",
-   "label": "Quantity"
-  },
-  {
    "fieldname": "column_break_10",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "column_break_20",
-   "fieldtype": "Column Break"
-  },
-  {
+   "depends_on": "eval:doc.type==\"Cash\"|| doc.type==\"Cash Material\"",
    "fieldname": "amount",
    "fieldtype": "Currency",
    "label": "Amount"
   },
   {
-   "depends_on": "eval:doc.type==\"Material\"",
-   "fetch_from": "item_code.asset_category",
-   "fieldname": "asset_category",
-   "fieldtype": "Link",
-   "label": "Asset Category",
-   "options": "Asset Category"
-  },
-  {
-   "depends_on": "eval:doc.type==\"Material\"",
-   "fetch_from": "item_code.stock_uom",
-   "fieldname": "uom",
-   "fieldtype": "Link",
-   "label": "UOM",
-   "options": "UOM"
-  },
-  {
-   "depends_on": "eval:doc.type==\"Material\"",
-   "fieldname": "rate",
-   "fieldtype": "Currency",
-   "label": "Rate"
-  },
-  {
    "depends_on": "eval:doc.type==\"Cash\"",
    "fieldname": "aid_type",
    "fieldtype": "Link",
-   "label": "\u0627\u0644\u0646\u0648\u0639",
+   "label": "Aid Type",
    "options": "Aid Type"
-  },
-  {
-   "fieldname": "stock_qty",
-   "fieldtype": "Float",
-   "label": "Stock Qty"
-  },
-  {
-   "fieldname": "valuation_rate",
-   "fieldtype": "Currency",
-   "label": "Valuation Rate"
-  },
-  {
-   "fieldname": "conversion_factor",
-   "fieldtype": "Float",
-   "label": "UOM Conversion Factor"
-  },
-  {
-   "fieldname": "income_account",
-   "fieldtype": "Link",
-   "label": "Income Account",
-   "options": "Account"
-  },
-  {
-   "fieldname": "expense_account",
-   "fieldtype": "Link",
-   "label": "Expense Account",
-   "options": "Account"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_fixed_asset",
-   "fieldtype": "Check",
-   "label": "Is Fixed Asset"
-  },
-  {
-   "fieldname": "project_activities",
-   "fieldtype": "Link",
-   "label": "\u0627\u0644\u0646\u0634\u0627\u0637",
-   "options": "Project Activities"
   }
  ],
  "istable": 1,
- "modified": "2021-08-12 00:42:24.568817",
+ "modified": "2021-08-18 11:58:14.571820",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Aid Details",

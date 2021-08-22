@@ -351,65 +351,9 @@ frappe.ui.form.on("Details", {
 	
 });
 
-// frappe.ui.form.on('Details', 'beneficiary', function(frm, cdt, cdn) {
- 
-// 	var u = locals[cdt][cdn];
-		
-// 			return frappe.call({
-// 				method: "beneficiaries.beneficiaries.doctype.beneficiary_aid_payment.beneficiary_aid_payment.get_beneficiary_details",
-// 				args: {
-					
-// 					beneficiary: u.beneficiary,
-					
-// 					exchange_date:frm.doc.exchange_date,
-// 					type1:frm.doc.type
-// 				},
-// 				callback: function(r, rt) {
-// 					if(r.message) {
-// 						console.log(r.message);
-// 						u.type=r.message[0].type;
-// 						u.item_code=r.message[0].item_code;
-// 						u.item_name=r.message[0].item_name;
-// 						u.exchange_date=r.message[0].exchange_date;
-// 						u.amount=r.message[0].amount;
-// 						u.qty=r.message[0].qty;
-// 						console.log(r.message[0].item_code);
-// 									frm.refresh_fields();
-									
-// 									frappe.call({
-// 										method: "beneficiaries.beneficiaries.doctype.beneficiary_aid_payment.beneficiary_aid_payment.get_item_detail",
-// 										args: {item_code: u.item_code, is_fixed_asset: u.is_fixed_asset, 
-// 											company: frm.doc.company, type: frm.doc.type,},
-// 										freeze: true,
-// 										callback: function(msg) {
-// 											console.log(msg);
-// 											if(msg && msg.message){
-// 												u.warehouse = msg.message.warehouse;
-// 												u.income_account = msg.message.income_account;
-// 												u.expense_account = msg.message.expense_account;
-// 												console.log( msg.message.expense_account);
-// 												if(frm.doc.type == 'Asset')
-// 													u.asset_location = msg.message.asset_location;
-// 												u.cost_center = msg.message.cost_center;
-// 												u.project = msg.message.project;
-// 												u.project_activities = msg.message.project_activities;
-// 												u.valuation_rate = msg.message.valuation_rate;
-// 												u.rate=msg.message.valuation_rate;
-												
-// 												frm.refresh_fields();
-// 											}			
-// 										}
-										
-// 									});
 
-									
-							
-					
-// 					}
-// 				}
-// 			});
-// 		});
-	
+
+
 
 
 frappe.ui.form.on('Details', 'item_code', function(frm, cdt, cdn) {
@@ -447,6 +391,7 @@ frappe.ui.form.on('Details', 'item_code', function(frm, cdt, cdn) {
 		}
 	}); 
 });
+
 
 frappe.ui.form.on('Details', 'qty', function(frm, cdt, cdn) {
 	var u = locals[cdt][cdn];
