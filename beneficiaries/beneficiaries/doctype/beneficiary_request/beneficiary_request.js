@@ -25,7 +25,7 @@ frappe.ui.form.on('Beneficiary Request', {
 		frappe.confirm(__('This will add beneficiary to Beneficaries list . Do you want to proceed?'),
 			function() {
 				frappe.call({
-					method: 'add_beneficiary',
+					method: "add_beneficiary",
 					args: {},
 					callback: function() {frm.events.refresh(frm);
 						cur_frm.save();

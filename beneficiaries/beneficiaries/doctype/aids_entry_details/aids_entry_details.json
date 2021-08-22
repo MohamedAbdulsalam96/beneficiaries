@@ -6,21 +6,20 @@
  "field_order": [
   "section_break_1",
   "beneficiary",
-  "beneficiary_account",
   "item_code",
   "type",
   "aid_type",
   "item_name",
-  "brand",
+  "amount",
+  "aid_decision_date",
   "column_break_11",
   "item_group",
   "item_account",
-  "exchange_date",
   "uom",
   "conversion_factor",
   "stock_qty",
+  "brand",
   "quantity_and_rate_section",
-  "amount",
   "qty",
   "cb",
   "rate",
@@ -62,17 +61,9 @@
    "options": "Beneficiary"
   },
   {
-   "fetch_from": "beneficiary.beneficiary_account",
-   "fieldname": "beneficiary_account",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Beneficiary",
-   "options": "Account"
-  },
-  {
+   "depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "item_account",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Item Account",
    "options": "Account"
   },
@@ -84,23 +75,23 @@
    "options": "currency"
   },
   {
+   "depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "cost_center",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Cost Center",
    "options": "Cost Center"
   },
   {
+   "depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "project",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Project",
    "options": "Project"
   },
   {
+   "depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "activity",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Project Activity",
    "options": "Activity"
   },
@@ -108,19 +99,14 @@
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
-   "options": "Cash\nMaterial"
+   "options": "Cash\nCash Material\nMaterial"
   },
   {
    "fieldname": "column_break_7",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "exchange_date",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Exchange Date"
-  },
-  {
+   "depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "item_code",
    "fieldtype": "Link",
    "label": "Item",
@@ -273,7 +259,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "collapsible_depends_on": "eval:doc.type==\"\u0639\u064a\u0646\u064a\"",
+   "collapsible_depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "quantity_and_rate_section",
    "fieldtype": "Section Break",
    "label": "Quantity and Rate"
@@ -312,6 +298,7 @@
    "options": "BOM"
   },
   {
+   "collapsible_depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "accounting_dimensions_section",
    "fieldtype": "Section Break",
    "label": "Accounting Dimensions"
@@ -347,13 +334,20 @@
    "options": "Aid Type"
   },
   {
+   "depends_on": "eval:doc.type==\"Material\"",
    "fieldname": "valuation_rate",
    "fieldtype": "Currency",
    "label": "Valuation Rate"
+  },
+  {
+   "fieldname": "aid_decision_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Aid Decision Date"
   }
  ],
  "istable": 1,
- "modified": "2021-08-12 05:41:42.507027",
+ "modified": "2021-08-18 19:40:39.707873",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Aids Entry Details",

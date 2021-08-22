@@ -17,6 +17,7 @@
   "identification_no",
   "eduaction_details_section",
   "education_level",
+  "level",
   "rating",
   "column_break_15",
   "education_state",
@@ -36,7 +37,10 @@
   "talents",
   "health_details_section",
   "health_status",
-  "disease"
+  "disease",
+  "column_break_34",
+  "smoker",
+  "psychopath"
  ],
  "fields": [
   {
@@ -82,7 +86,7 @@
    "fieldname": "education_state",
    "fieldtype": "Select",
    "label": "Education State",
-   "options": "Complete\nSundered\nContinuous"
+   "options": "Sundered\nContinuous"
   },
   {
    "fieldname": "identification_no",
@@ -226,10 +230,33 @@
    "fieldname": "health_details_section",
    "fieldtype": "Section Break",
    "label": "HEALTH DETAILS"
+  },
+  {
+   "fieldname": "column_break_34",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "smoker",
+   "fieldtype": "Check",
+   "label": "Smoker"
+  },
+  {
+   "default": "0",
+   "fieldname": "psychopath",
+   "fieldtype": "Check",
+   "label": "Psychopath"
+  },
+  {
+   "depends_on": "eval:doc.education_level==\"Primary\"||doc.education_level==\"Secondery\"",
+   "fieldname": "level",
+   "fieldtype": "Select",
+   "label": "Level",
+   "options": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12"
   }
  ],
  "istable": 1,
- "modified": "2021-08-15 11:40:41.375166",
+ "modified": "2021-08-17 14:44:56.511236",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Family Members Info",

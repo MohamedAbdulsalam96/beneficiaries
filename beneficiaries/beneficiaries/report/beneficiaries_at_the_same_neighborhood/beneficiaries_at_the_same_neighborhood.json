@@ -1,0 +1,28 @@
+{
+ "add_total_row": 0,
+ "creation": "2021-08-18 09:20:25.613375",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"filters\":[],\"fields\":[[\"status\",\"Beneficiary\"],[\"docstatus\",\"Beneficiary\"],[\"renewal_date\",\"Beneficiary\"],[\"naming_series\",\"Beneficiary\"],[\"beneficiary_state\",\"Beneficiary\"],[\"address\",\"Beneficiary\"],[\"mobile\",\"Beneficiary\"],[\"phone\",\"Beneficiary\"],[\"name\",\"Beneficiary\"]],\"order_by\":\"`tabBeneficiary`.`modified` desc\",\"page_length\":100,\"column_widths\":{\"status\":120,\"renewal_date\":120,\"naming_series\":120,\"beneficiary_state\":120,\"address\":120,\"mobile\":120,\"phone\":120,\"name\":120},\"group_by\":null}",
+ "modified": "2021-08-18 09:52:02.206387",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Beneficiaries At The Same Neighborhood",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Beneficiary",
+ "report_name": "Beneficiaries At The Same Neighborhood",
+ "report_type": "Report Builder",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Beneficiary"
+  }
+ ]
+}

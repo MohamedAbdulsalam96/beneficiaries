@@ -7,21 +7,25 @@
  "engine": "InnoDB",
  "field_order": [
   "basic_information_section",
-  "captcha_html_wrapper",
   "beneficiary_name",
   "marital_status",
   "nationality",
   "gender",
   "territory",
-  "inserted",
+  "beneficiary_state",
   "column_break_6",
+  "date_of_registration",
   "address",
   "phone",
   "mobile",
   "email",
-  "html_14",
+  "inserted",
   "identification_details_section",
   "id_type",
+  "the_number",
+  "column_break_18",
+  "date_of_issue",
+  "date_of_expired",
   "fee_details_section",
   "fees",
   "fee_total",
@@ -43,6 +47,7 @@
   "column_break_13",
   "the_number_of_professional_workers",
   "the_number_of_household_workers",
+  "number_of_unemployed_members",
   "section_break_33",
   "promise_correct_data",
   "beneficiary_notes",
@@ -107,12 +112,6 @@
    "fieldname": "identification_details_section",
    "fieldtype": "Section Break",
    "label": "IDENTIFICATION DETAILS"
-  },
-  {
-   "fieldname": "id_type",
-   "fieldtype": "Table",
-   "label": " ",
-   "options": "Identification Type"
   },
   {
    "fieldname": "fee_details_section",
@@ -250,11 +249,6 @@
    "options": "Territory"
   },
   {
-   "fieldname": "captcha_html_wrapper",
-   "fieldtype": "HTML",
-   "label": "captcha_html_wrapper"
-  },
-  {
    "fieldname": "number_of_rooms",
    "fieldtype": "Int",
    "label": "Number Of Rooms"
@@ -349,12 +343,50 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "html_14",
-   "fieldtype": "HTML",
-   "options": "<hr>"
+   "fieldname": "date_of_registration",
+   "fieldtype": "Date",
+   "label": "Date of Registration"
+  },
+  {
+   "fieldname": "number_of_unemployed_members",
+   "fieldtype": "Int",
+   "label": "Number of Unemployed Members"
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_issue",
+   "fieldtype": "Date",
+   "label": "Date Of Issue"
+  },
+  {
+   "fieldname": "date_of_expired",
+   "fieldtype": "Date",
+   "label": "Date Of Expired"
+  },
+  {
+   "fieldname": "the_number",
+   "fieldtype": "Data",
+   "label": "Identification No",
+   "length": 10,
+   "options": "Phone"
+  },
+  {
+   "fieldname": "id_type",
+   "fieldtype": "Select",
+   "label": "Identification Type",
+   "options": "Personal Card\nPassport"
+  },
+  {
+   "fieldname": "beneficiary_state",
+   "fieldtype": "Link",
+   "label": "Beneficiary State",
+   "options": "State"
   }
  ],
- "modified": "2021-08-12 06:12:44.077424",
+ "modified": "2021-08-17 10:40:59.732620",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Beneficiary Request",

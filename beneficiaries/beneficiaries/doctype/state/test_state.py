@@ -6,5 +6,5 @@ from __future__ import unicode_literals
 # import frappe
 import unittest
 
-class TestAidRenewal(unittest.TestCase):
+class TestState(unittest.TestCase):
 	pass

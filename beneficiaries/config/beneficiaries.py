@@ -108,5 +108,25 @@ def get_data():
 								
 			]
 		},
+		{
+			"label": _("Reports"),
+			"items": [
+			
+					{
+					"type": "report",
+					"name": "Beneficiaries At The Same Neighborhood",
+					"doctype": "Beneficiary",
+					"is_report_builder": True
+				},
+						{
+					"type": "report",
+					"name": "In Progress Rent Members",
+					"doctype": "Beneficiary",
+					"is_report_builder": True
+				},
+				
+								
+			]
+		},
 		
 	]

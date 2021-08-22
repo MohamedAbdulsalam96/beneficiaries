@@ -16,7 +16,7 @@
   "col_break1",
   "account_currency",
   "item_code",
-  "exchange_date",
+  "aid_decision_date",
   "type",
   "download_pdf",
   "item_name",
@@ -96,8 +96,7 @@
    "in_global_search": 1,
    "label": "Item Name",
    "oldfieldname": "item_name",
-   "oldfieldtype": "Data",
-   "reqd": 1
+   "oldfieldtype": "Data"
   },
   {
    "collapsible": 1,
@@ -460,12 +459,7 @@
    "fieldname": "type",
    "fieldtype": "Select",
    "label": "Type",
-   "options": "Cash\nMaterial"
-  },
-  {
-   "fieldname": "exchange_date",
-   "fieldtype": "Date",
-   "label": "Exchange Date"
+   "options": "Cash\nCash Material\nMaterial"
   },
   {
    "depends_on": "eval:doc.type==\"Material\"",
@@ -478,10 +472,16 @@
    "fieldname": "rate",
    "fieldtype": "Currency",
    "label": "Rate"
+  },
+  {
+   "fieldname": "aid_decision_date",
+   "fieldtype": "Date",
+   "label": "Aid Decision Date",
+   "reqd": 1
   }
  ],
  "istable": 1,
- "modified": "2021-08-12 03:28:05.597032",
+ "modified": "2021-08-19 10:13:54.668107",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Details",
