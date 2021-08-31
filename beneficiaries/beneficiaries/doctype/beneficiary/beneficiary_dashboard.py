@@ -9,14 +9,11 @@ def get_data():
 			'Beneficiary Aids Entry': ['items', 'beneficiary_aids_entry']
 		},
 		'transactions': [
-			{
-				'label': _('Beneficiary Return'),
-				'items': ['Beneficiary Return']
-			},
+			
 	
 			{
-				'label': _('Beneficiary logs'),
-				'items': ['Beneficiary logs']
+				'label': _('Beneficiary Aid'),
+				'items': ['Beneficiary Aid']
 			},
 				{
 				'label': _('Beneficiary Renewal'),

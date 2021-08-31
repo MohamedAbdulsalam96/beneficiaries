@@ -1,0 +1,88 @@
+{
+ "autoname": "naming_series:",
+ "creation": "2021-08-30 11:09:26.324205",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_1",
+  "naming_series",
+  "beneficiary",
+  "aid_details",
+  "beneficiary_aid_section_section",
+  "aid_approval",
+  "items",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "beneficiary",
+   "fieldtype": "Link",
+   "label": "Beneficiary",
+   "options": "Beneficiary"
+  },
+  {
+   "fieldname": "beneficiary_aid_section_section",
+   "fieldtype": "Section Break",
+   "label": "Beneficiary Aid Section"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Display Aids"
+  },
+  {
+   "fieldname": "aid_approval",
+   "fieldtype": "Button",
+   "label": "AID  Approval"
+  },
+  {
+   "fieldname": "aid_details",
+   "fieldtype": "Table",
+   "label": "Aid Details",
+   "options": "Aid Details"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Beneficiary Aid",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "BEN-DEC-.YY.-"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2021-08-30 20:09:13.152496",
+ "modified_by": "Administrator",
+ "module": "Beneficiaries",
+ "name": "Beneficiary Aid",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

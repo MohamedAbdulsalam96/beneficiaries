@@ -9,7 +9,9 @@
   "fee_type",
   "fee_in_year",
   "fee_in_month",
-  "attachment_of__fee"
+  "attachment_of__fee",
+  "owner_of_fee",
+  "file_no"
  ],
  "fields": [
   {
@@ -21,7 +23,6 @@
   {
    "fieldname": "fee_type",
    "fieldtype": "Link",
-   "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Fee Type",
    "options": "Fee"
@@ -30,7 +31,8 @@
    "fieldname": "fee_in_year",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Average Fee In Year"
+   "label": "Average Fee In Year",
+   "read_only": 1
   },
   {
    "fieldname": "fee_in_month",
@@ -42,11 +44,21 @@
    "fieldname": "attachment_of__fee",
    "fieldtype": "Attach",
    "in_list_view": 1,
-   "label": "Attachment of  Fee"
+   "label": "Attachment of Fee"
+  },
+  {
+   "fieldname": "owner_of_fee",
+   "fieldtype": "Data",
+   "label": "Owner of Fee"
+  },
+  {
+   "fieldname": "file_no",
+   "fieldtype": "Data",
+   "label": "File No"
   }
  ],
  "istable": 1,
- "modified": "2021-08-17 10:28:39.410790",
+ "modified": "2021-08-30 13:23:28.874777",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Fee Type",

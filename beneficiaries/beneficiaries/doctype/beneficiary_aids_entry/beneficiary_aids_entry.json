@@ -18,7 +18,7 @@
   "cost_center",
   "column_break_14",
   "project",
-  "activity",
+  "project_activities",
   "accounting_section",
   "beneficiary_account",
   "column_break_16",
@@ -76,12 +76,6 @@
    "fieldtype": "Link",
    "label": "Cost Center",
    "options": "Cost Center"
-  },
-  {
-   "fieldname": "activity",
-   "fieldtype": "Link",
-   "label": "Project Activity",
-   "options": "Project Activities"
   },
   {
    "fieldname": "project",
@@ -216,10 +210,16 @@
    "fieldtype": "Table",
    "label": "AID Material",
    "options": "AID Material"
+  },
+  {
+   "fieldname": "project_activities",
+   "fieldtype": "Link",
+   "label": "Project Activity",
+   "options": "Project Activities"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-08-18 20:45:02.804146",
+ "modified": "2021-08-30 20:59:48.628746",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Beneficiary Aids Entry",

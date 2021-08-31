@@ -32,7 +32,7 @@ from erpnext.accounts.utils import get_fiscal_year
 class BeneficiaryRequest(Document):
 	def validate(self):
 		self.is_deserve()
-		self.validate_values()
+		# self.validate_values()
 		self.created_by = frappe.session.user
 		self.date_of_registration=date.today()
 
@@ -71,6 +71,7 @@ class BeneficiaryRequest(Document):
 			return
 		fee_sum=0
 		for m in self.get("fees"):
+			m.fee_in_year=flt(m.fee_in_month * 12)
 			fee_sum +=m.fee_in_year
 		self.fee_total=fee_sum
 		obl_sum=0
@@ -79,7 +80,8 @@ class BeneficiaryRequest(Document):
 		self.obligations_total=obl_sum
 
 		result = self.fee_total - self.obligations_total
-		if self.territory=="Unaizah" and (self.nationality=="Saudi" or self.nationality=="Syrian" )and result <= check_is_deserve[0].live_base:
+		if (self.territory=="Unaizah" or self.territory=="عنيزة") and (self.nationality=="Saudi" or self.nationality=="Syrian" or self.nationality=="سوري" or
+		self.nationality=="سعودي")and result <= check_is_deserve[0].live_base:
 			self.deserve_according_to_base=True
 			self.live_base=check_is_deserve[0].live_base
 			if self.home_type== "Rent":
@@ -88,7 +90,8 @@ class BeneficiaryRequest(Document):
 				self.rent_base=0
 			self.rent_in_year=check_is_deserve[0].rent_in_year
 			self.rent_in_five_year=check_is_deserve[0].rent_in_five_year
-		elif self.territory=="Unaizah" and (self.nationality=="Saudi" or self.nationality=="Syrian" ) and result >= check_is_deserve[0].live_base and result <= check_is_deserve[0].rent_base:
+		elif (self.territory=="Unaizah" or self.territory=="عنيزة") and (self.nationality=="Saudi" or self.nationality=="Syrian" or self.nationality=="سوري" or
+		self.nationality=="سعودي" ) and result >= check_is_deserve[0].live_base and result <= check_is_deserve[0].rent_base:
 			self.deserve_according_to_base=True
 			self.live_base=0
 			if self.home_type== "Rent":

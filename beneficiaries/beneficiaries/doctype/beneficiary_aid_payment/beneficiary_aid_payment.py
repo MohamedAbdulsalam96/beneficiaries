@@ -22,30 +22,30 @@ class BeneficiaryAidPayment(BuyingController):
 		self.make_gl_entries()
 		if self.type == 'Material' and self.update_stock == 1:
 			self.update_stock_ledger()
-		self.update_logs()
+		# self.update_logs()
 
 	def on_cancel(self):
 		self.make_gl_entries(cancel=True)
 		if self.type == 'Material' and self.update_stock == 1:
 			self.update_stock_ledger()
-		self.cancel_logs_update()
+		# self.cancel_logs_update()
 
 	def onload(self):
 			self.beneficiary_account=frappe.db.get_single_value('Beneficiary Settings', 'beneficiary_account')
 
-	def cancel_logs_update(self):
-		for item in self.get('items'):
-				filters=[item.beneficiary,item.aid_decision_date]
-				frappe.db.sql("""UPDATE `tabBeneficiary logs` set beneficiary_aid_payment=null where
-				 beneficiary=%s and exchange_date=%s """
-				,filters)
+	# def cancel_logs_update(self):
+	# 	for item in self.get('items'):
+	# 			filters=[item.beneficiary,item.aid_decision_date]
+	# 			frappe.db.sql("""UPDATE `tabBeneficiary logs` set beneficiary_aid_payment=null where
+	# 			 beneficiary=%s and exchange_date=%s """
+	# 			,filters)
 
-	def update_logs(self):
-			for item in self.get('items'):
-				filters=['bb',item.beneficiary,item.aid_decision_date]
-				frappe.db.sql("""UPDATE `tabBeneficiary logs` set beneficiary_aid_payment=%s where
-				 beneficiary=%s and exchange_date=%s  and beneficiary_aid_payment=null"""
-				,filters)
+	# def update_logs(self):
+	# 		for item in self.get('items'):
+	# 			filters=['bb',item.beneficiary,item.aid_decision_date]
+	# 			frappe.db.sql("""UPDATE `tabBeneficiary logs` set beneficiary_aid_payment=%s where
+	# 			 beneficiary=%s and exchange_date=%s  and beneficiary_aid_payment=null"""
+	# 			,filters)
 
 	def fill_beneficiary(self):			
 		beneficiaries = get_beneficiary_details(self.beneficiary,self.aid_decision_date,self.type)

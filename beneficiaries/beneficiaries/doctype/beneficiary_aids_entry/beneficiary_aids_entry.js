@@ -25,10 +25,44 @@ frappe.ui.form.on('Beneficiary Aids Entry', {
 	},
 
 	refresh: function(frm) {
+		frm.set_query('item_code', 'aid_material', function(doc, cdt, cdn) {
+		
+
+			var u = locals[cdt][cdn];
+		
+		
+					return {
+						
+							filters: {
+								"is_stock_item": 1,
+						
+						}
+					};
+				
+				
+			 
+		});	
 		
 	frm.set_df_property("get_beneficiaries", "hidden", frm.doc.docstatus ? 1:0);
 
 			frm.events.show_general_ledger(frm);
+			frm.set_query("account_paid_from", function() {
+				return {
+					filters: {
+						// 'account_type': 'Receivable',
+						'is_group': 0,
+						'company': frm.doc.company
+					}
+				}
+			});
+			frm.set_query("project_activities", function() {
+			return {
+				filters: {
+					'project': frm.doc.project
+					
+				}
+			};
+		});
 	
 	},
 	type:function(frm){
@@ -42,7 +76,7 @@ frappe.ui.form.on('Beneficiary Aids Entry', {
 				frm.refresh();
 				var ben=[];
 				for(var i=0;i<(msg.message).length;i++)
-				ben[i]=msg.message[i].beneficiary_name;
+				ben[i]=msg.message[i].beneficiary;
 				console.log(ben);
 				frm.set_query("beneficiary", "ben_mat", function(doc, cdt, cdn) {
 					return {
@@ -66,7 +100,7 @@ frappe.ui.form.on('Beneficiary Aids Entry', {
 							frm.refresh();
 							var ben=[];
 							for(var i=0;i<(msg.message).length;i++)
-							ben[i]=msg.message[i].beneficiary_name;
+							ben[i]=msg.message[i].beneficiary;
 							console.log(ben);
 							frm.set_query("beneficiary", "ben_mat", function(doc, cdt, cdn) {
 								return {
@@ -171,26 +205,7 @@ frappe.ui.form.on('Beneficiary Aids Entry', {
 	}
 });
 
-frappe.ui.form.on('Beneficiary For Material Aids', 'beneficiary', function(frm, cdt, cdn) {
 
-	// var u = locals[cdt][cdn];
-
-	// frappe.call({
-	// 	method: 'get_beneficiaries',
-	// 	args: {},
-	// 	callback: function(msg) {
-		
-	// 		return {
-				
-	// 				filters: {
-	// 					"beneficiary": ["in", msg.message.beneficiary],
-				
-	// 			}
-	// 		};
-		
-	// 	}
-	// }); 
-});	
 frappe.ui.form.on("Beneficiary Aids Entry", 
 	'validate',function(frm){
 		cur_frm.cscript.update_total(frm);

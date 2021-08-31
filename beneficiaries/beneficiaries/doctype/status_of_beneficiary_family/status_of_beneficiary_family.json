@@ -1,33 +1,25 @@
 {
- "creation": "2021-08-17 15:46:42.782256",
+ "autoname": "field:status_of_beneficiary_family_name",
+ "creation": "2021-08-24 10:23:47.147726",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "item_code",
-  "qty"
+  "status_of_beneficiary_family_name"
  ],
  "fields": [
   {
-   "default": "1",
-   "fieldname": "qty",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Quantity"
-  },
-  {
-   "fieldname": "item_code",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Item",
-   "options": "Item"
+   "fieldname": "status_of_beneficiary_family_name",
+   "fieldtype": "Data",
+   "label": "Status Of Beneficiary Family Name",
+   "unique": 1
   }
  ],
- "modified": "2021-08-30 22:23:20.507950",
+ "modified": "2021-08-30 19:26:21.055224",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
- "name": "AID Material",
- "owner": "Administrator",
+ "name": "Status of Beneficiary Family",
+ "owner": "support-team@partner-cons.com",
  "permissions": [
   {
    "create": 1,

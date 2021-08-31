@@ -1,33 +1,25 @@
 {
- "creation": "2021-08-17 15:46:42.782256",
+ "autoname": "field:material_status_name",
+ "creation": "2021-08-24 10:06:09.273796",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "item_code",
-  "qty"
+  "material_status_name"
  ],
  "fields": [
   {
-   "default": "1",
-   "fieldname": "qty",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Quantity"
-  },
-  {
-   "fieldname": "item_code",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Item",
-   "options": "Item"
+   "fieldname": "material_status_name",
+   "fieldtype": "Data",
+   "label": "Material Status Name",
+   "unique": 1
   }
  ],
- "modified": "2021-08-30 22:23:20.507950",
+ "modified": "2021-08-30 12:47:03.735519",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
- "name": "AID Material",
- "owner": "Administrator",
+ "name": "Material Status",
+ "owner": "support-team@partner-cons.com",
  "permissions": [
   {
    "create": 1,

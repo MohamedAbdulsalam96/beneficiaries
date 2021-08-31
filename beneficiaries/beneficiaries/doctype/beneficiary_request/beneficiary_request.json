@@ -22,8 +22,8 @@
   "inserted",
   "identification_details_section",
   "id_type",
-  "the_number",
   "column_break_18",
+  "the_number",
   "date_of_issue",
   "date_of_expired",
   "fee_details_section",
@@ -89,6 +89,7 @@
   {
    "fieldname": "home_type_attachment",
    "fieldtype": "Attach Image",
+   "hidden": 1,
    "label": "Home Type Attachment"
   },
   {
@@ -121,6 +122,7 @@
   {
    "fieldname": "obligations_details_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "OBLIGATION DETAILS"
   },
   {
@@ -147,9 +149,9 @@
   },
   {
    "fieldname": "marital_status",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Material Status",
-   "options": "Single\nMarried\nDivorced\nWidow"
+   "options": "Material Status"
   },
   {
    "fieldname": "gender",
@@ -160,6 +162,7 @@
   {
    "fieldname": "number_of_wives",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "Number Of Wives"
   },
   {
@@ -176,11 +179,13 @@
   {
    "fieldname": "the_number_of_professional_workers",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "The Number Of Professional Workers"
   },
   {
    "fieldname": "the_number_of_household_workers",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "The Number Of Household Workers"
   },
   {
@@ -209,7 +214,6 @@
   {
    "fieldname": "obligation",
    "fieldtype": "Table",
-   "ignore_user_permissions": 1,
    "options": "Beneficiary Obligation"
   },
   {
@@ -251,11 +255,13 @@
   {
    "fieldname": "number_of_rooms",
    "fieldtype": "Int",
+   "hidden": 1,
    "label": "Number Of Rooms"
   },
   {
    "fieldname": "state_of_home",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "State Of Home",
    "options": "Good\nNormal\nBad"
   },
@@ -263,6 +269,7 @@
    "collapsible": 1,
    "fieldname": "\u0645\u0645\u062a\u0644\u0643\u0627\u062a_\u0627\u0644\u0627\u0633\u0631\u0629_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "FAMILY OWNS"
   },
   {
@@ -359,11 +366,13 @@
   {
    "fieldname": "date_of_issue",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Date Of Issue"
   },
   {
    "fieldname": "date_of_expired",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Date Of Expired"
   },
   {
@@ -383,11 +392,11 @@
    "fieldname": "beneficiary_state",
    "fieldtype": "Link",
    "label": "Beneficiary State",
-   "options": "State"
+   "options": "Beneficiary Status"
   }
  ],
- "modified": "2021-08-17 10:40:59.732620",
- "modified_by": "Administrator",
+ "modified": "2021-08-26 11:31:15.497135",
+ "modified_by": "support-team@partner-cons.com",
  "module": "Beneficiaries",
  "name": "Beneficiary Request",
  "owner": "Administrator",

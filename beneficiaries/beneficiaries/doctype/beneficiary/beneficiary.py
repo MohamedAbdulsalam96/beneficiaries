@@ -35,10 +35,11 @@ from frappe.utils.user import is_website_user
 from erpnext.support.doctype.service_level_agreement.service_level_agreement import get_active_service_level_agreement_for
 from frappe.email.inbox import link_communication_to_document
 from frappe.utils import flt, has_common
-# sender_field = "raised_by"
+
 class Beneficiary(Document):
 	
 	def validate(self):
+		self.is_deserve()
 		self.validate_renewal_diff()
 		if(self.renewal==1):
 			self.validate_renewal()
@@ -55,7 +56,7 @@ class Beneficiary(Document):
 		"""Load address and contacts in `__onload`"""
 		self.validate_renewal_diff()
 		load_address_and_contact(self)
-		self.validate_check_state_aid_details()
+	
 		
 		if ( self.beneficiaries_manager_approve==1 or self.committee_approve==1) and not self.re:
 			self.date_of_decision=date.today()
@@ -84,107 +85,58 @@ class Beneficiary(Document):
 		# self.renewal_date=add_months(self.renewal_date,12)
 		self.status="In Progress"
 
-	def validate_check_state_aid_details(self):
-	
-		for aid in self.get("aid_details"):
-			f=True
-			for row in self.get("display"):
-				if row.aid_no==aid.aid_no and row.state==0:
-					f=False
-			if f==True:
-				aid.state=1
-	
+	def get_max_number_of_members(self):
+		return frappe.db.sql("""select max(number_of_members) as members from `tabThe Base`""", as_dict=True)
 
-	def add_return(self):
-		returnben = frappe.new_doc('Beneficiary Return')
-		returnben.beneficiary = self.name
-		returnben.employee = self.employee
-		returnben.reason = self.reason_of_return
-		# returnben.autoname()
-		returnben.insert()
+	def get_base(self):
+		max_member=self.get_max_number_of_members()[0].members
+		if self.number_of_needed_members_in_family > int (max_member):
+			members=max_member
+		else:
+			members=self.number_of_needed_members_in_family
+			"""
+				Returns list of active beneficiary based on selected criteria
+				and for which type exists
+			"""
+		return frappe.db.sql("""select live_base as live_base,rent_base as rent_base,rent_in_year as rent_in_year,rent_in_five_year as rent_in_five_year
+		from `tabThe Base` where number_of_members= %s""",members, as_dict=True)
 
-	
+	def is_deserve(self):		
+		check_is_deserve = self.get_base()
 		
-	def aids_details(self):
-		i=1
-		for row in self.get("aid_details"):
-			if not row.from_date:
-				row.from_date=date.today()
-			if not row.to_date:
-				row.to_date= add_months(row.from_date,1)
-				row.number_of_months=1
-			row.aid_no=i;
-			i=i+1
-		for aid in self.get("aid_details"):
-			if aid.frequency=="Once":
-				i=aid.number_of_months
-			elif aid.frequency=="Monthly":
-				i=1
-			elif aid.frequency=="Every 3 Months":
-				i=3
-			elif aid.frequency=="Every 6 Months":
-				i=6
+		if not check_is_deserve:
+			return
+		fee_sum=0
+		for m in self.get("fees"):
+			m.fee_in_year=flt(m.fee_in_month * 12)
+			fee_sum +=m.fee_in_year
+		self.fee_total=fee_sum
+		obl_sum=0
+		for m in self.get("beneficiary_obligation"):
+			obl_sum +=m.amount
+		self.obligations_total=obl_sum
+
+		result = self.fee_total - self.obligations_total
+		if (self.territory=="Unaizah" or self.territory=="عنيزة") and (self.nationality=="Saudi" or self.nationality=="Syrian" or self.nationality=="سوري" or
+		self.nationality=="سعودي")and result <= check_is_deserve[0].live_base:
+			self.deserve_according_to_base=True
+			self.live_base=check_is_deserve[0].live_base
+			if self.home_type== "Rent":
+				self.rent_base=check_is_deserve[0].rent_base
 			else:
-				i=1
-			for f in range(0,aid.number_of_months,i):
-				exchange_date =  add_months(aid.from_date,f)
-				row = self.append('display', {})
-				row.type=aid.type
-				row.amount=aid.amount
-				row.aid_decision_date=exchange_date
-				row.aid_no=aid.aid_no
-				row.state=aid.state
-
-# def get_item_details(args=None):
-# 	item = frappe.db.sql("""select i.name, id.income_account,id.expense_account, id.default_warehouse, id.cost_center, id.project, id.project_activities 
-# 			from `tabItem` i LEFT JOIN `tabItem Default` id ON i.name=id.parent and id.company=%s
-# 			where i.name=%s
-# 				and i.disabled=0
-# 				and (i.end_of_life is null or i.end_of_life='0000-00-00' or i.end_of_life > %s)""",
-# 			(args.get('company'), args.get('item_code'), nowdate()), as_dict = True)
-# 	if not item:
-# 			frappe.throw(_("Item {0} is not active or end of life has been reached").format(args.get("item_code")))
-
-# 	return item[0]
-						
-# from erpnext.stock.get_item_details import get_valuation_rate
-# from erpnext.accounts.utils import get_company_default
-
-# @frappe.whitelist()
-# def get_conversion_factor(item_code,uom):
-# 	return frappe.db.get_value('UOM Conversion Detail', {'parent': item_code,'uom': uom}, 'conversion_factor')
-
-
-# @frappe.whitelist()
-# def get_item_detail(item_code, company, type,asset_category=""):
-# 	item_dict = {}
-# 	item_details = get_item_details({'item_code': item_code, 'company': company})
-# 	item_dict['warehouse'] = item_details.get('default_warehouse')
-# 	item_dict['income_account'] = (item_details.get("income_account") or get_item_group_defaults(item_code, company).get("income_account") or 
-# 			get_company_default(company, "default_income_account") or frappe.get_cached_value('Company',  company, 
-# 			"default_income_account"))
-# 	item_dict['expense_account'] = (item_details.get("expense_account") or get_item_group_defaults(item_code, company).get("expense_account") or 
-# 	get_company_default(company, "default_expense_account") or frappe.get_cached_value('Company',  company, 
-# 	"default_expense_account"))
-# 	# if type == 'Asset':
-# 	# 	item_dict['asset_location'] = frappe.db.get_value('Asset', {'item_code': item_code}, 'location')
-# 	item_dict['cost_center'] = item_details.get('cost_center')
-# 	item_dict['project'] = item_details.get('project')
-# 	item_dict['project_activities'] = item_details.get('project_activities')
-# 	val = get_valuation_rate(item_code, company, item_dict['warehouse'])
-# 	item_dict['valuation_rate'] = val['valuation_rate'] if val and 'valuation_rate' in val else 1
-
-# 	warehouse_account = get_warehouse_account_map(company)
-# 	stock_item = frappe.db.sql("""select name from `tabItem` where name in (%s) and is_stock_item=1""" , [item_code])
-
-# 	if stock_item :
-# 		item_dict['expense_account'] = warehouse_account[item_dict['warehouse']]["account"]
-# 	elif asset_category:
-# 		asset_account = get_asset_category_account(asset_category=asset_category, \
-# 			fieldname='fixed_asset_account', company=company)
-# 		item_dict['expense_account'] = asset_account
-
-# 	return item_dict
+				self.rent_base=0
+			self.rent_in_year=check_is_deserve[0].rent_in_year
+			self.rent_in_five_year=check_is_deserve[0].rent_in_five_year
+		elif (self.territory=="Unaizah" or self.territory=="عنيزة") and (self.nationality=="Saudi" or self.nationality=="Syrian" or self.nationality=="سوري" or
+		self.nationality=="سعودي" ) and result >= check_is_deserve[0].live_base and result <= check_is_deserve[0].rent_base:
+			self.deserve_according_to_base=True
+			self.live_base=0
+			if self.home_type== "Rent":
+				self.rent_base=check_is_deserve[0].rent_base
+			else:
+				self.rent_base=0
+			self.rent_in_year=check_is_deserve[0].rent_in_year
+			self.rent_in_five_year=check_is_deserve[0].rent_in_five_year
 
 
 

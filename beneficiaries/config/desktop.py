@@ -7,7 +7,7 @@ def get_data():
 		{
 			"module_name": "Beneficiaries",
 			"color": "grey",
-			"icon": "octicon octicon-file-directory",
+			"icon": "octicon octicon-organization",
 			"type": "module",
 			"label": _("Beneficiaries")
 		}

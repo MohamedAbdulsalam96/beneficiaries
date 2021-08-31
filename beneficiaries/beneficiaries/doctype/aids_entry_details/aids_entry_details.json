@@ -6,6 +6,7 @@
  "field_order": [
   "section_break_1",
   "beneficiary",
+  "beneficiary_name",
   "item_code",
   "type",
   "aid_type",
@@ -93,7 +94,7 @@
    "fieldname": "activity",
    "fieldtype": "Link",
    "label": "Project Activity",
-   "options": "Activity"
+   "options": "Project Activities"
   },
   {
    "fieldname": "type",
@@ -344,10 +345,17 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Aid Decision Date"
+  },
+  {
+   "fetch_from": "beneficiary.beneficiary_name",
+   "fieldname": "beneficiary_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Beneficiary Name"
   }
  ],
  "istable": 1,
- "modified": "2021-08-18 19:40:39.707873",
+ "modified": "2021-08-30 14:11:55.110356",
  "modified_by": "Administrator",
  "module": "Beneficiaries",
  "name": "Aids Entry Details",

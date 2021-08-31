@@ -19,64 +19,25 @@ class BeneficiaryAidsEntry(AccountsController):
 	def get_ben_acc (self):
 		self.beneficiary_account=frappe.db.get_single_value('Beneficiary Settings', 'beneficiary_account')
 	def validate(self):
-		if self.type=='Material':
-			pass
+		# if self.type=='Material':
+		pass
 
 	def on_submit(self):
 		self.make_gl_entries()
 		self.update_deserve_check()
-		self.create_log()
+		# self.create_log()
 
 	def on_cancel(self):
 		self.make_gl_entries(cancel=True)
-		self.delete_log()
-
-	def create_log(self):
-		for item in self.get('items'):
-			log = frappe.new_doc('Beneficiary logs')
-			log.beneficiary = item.beneficiary
-			log.exchange_date = item.aid_decision_date
-			log.type = item.type
-			log.amount = item.amount
-			log.item_code = item.item_code
-			log.qty=item.qty
-			log.warehouse=item.warehouse
-			log.beneficiary_account=self.beneficiary_account
-			log.aids_account=item.item_account
-			log.income_account=item.income_account
-			log.expense_account=item.expense_account
-			log.beneficiary_aids_entry= self.name
-			log.insert()
-		frappe.msgprint('Beneficiary log Inserted Done :)')
-			
-	def delete_log(self):
-		for item in self.get('items'):
-			filters=[item.beneficiary,item.aid_decision_date,item.item_code,item.type,item.amount]
-			frappe.db.sql("""delete from `tabBeneficiary logs` where beneficiary=%s and exchange_date=%s and item_code=%s and type=%s and amount=%s"""
-			 ,filters)
-		
-
-
+		# self.delete_log()
 
 	def get_beneficiary_list(self):
-		cond = 'where ben.status=%s and dis.state=0 and det.aid_no=dis.aid_no and det.type=%s '
+		cond = 'where benef.status=%s and dis.state=0 and det.aid_no=dis.aid_no and det.type=%s '
 		# dis.exchange_date IN (det.from_date,det.to_date) and
 		filters=["In Progress",self.type]
-		# if self.aid :
-		# 	cond += ' and det.item_code=%s '
-		# 	filters.append(self.aid)	
-		# if self.project :
-		# 	cond += ' and det.project=%s '
-		# 	filters.append(self.project)
 		if self.aid_type :
 			cond += ' and det.aid_type=%s '
 			filters.append(self.aid_type)
-		# if self.activity :
-		# 	cond += ' and det.activity=%s '
-		# 	filters.append(self.activity)
-		# if self.cost_center :
-		# 	cond += 'and det.cost_center=%s '
-		# 	filters.append(self.cost_center)
 		if self.from_date :
 			cond += 'and det.from_date >= %s '
 			filters.append(self.from_date)
@@ -90,13 +51,18 @@ class BeneficiaryAidsEntry(AccountsController):
 			and for which type exists
 		"""
 
-		return frappe.db.sql("""select beneficiary_name as beneficiary,ben.beneficiary_account,
+		return frappe.db.sql("""select beneficiary as beneficiary,benef.beneficiary_account,benef.beneficiary_name,
 		det.amount,det.type,
 		det.from_date ,det.to_date,det.aid_type
 		,dis.aid_decision_date,dis.state,dis.aid_no,det.aid_no
-		from `tabBeneficiary` ben
+
+		from `tabBeneficiary Aid` ben
 		LEFT JOIN  `tabDisplay Aids` dis 
 	    ON ben.name=dis.parent
+
+		LEFT JOIN  `tabBeneficiary` benef 
+	    ON ben.beneficiary=benef.beneficiary_name
+
 		LEFT JOIN `tabAid Details` det 	
 		ON ben.name = det.parent
 		
@@ -104,17 +70,19 @@ class BeneficiaryAidsEntry(AccountsController):
 
 	def get_beneficiaries(self):
 		filters=[self.type,self.from_date]
-		x= frappe.db.sql("""select ben.beneficiary_name
-		from `tabBeneficiary` ben
+		x= frappe.db.sql("""select ben.beneficiary
+		from `tabBeneficiary Aid` ben
 		LEFT JOIN  `tabAid Details` det 
 		ON ben.name = det.parent
+
 		LEFT JOIN `tabDisplay Aids` dis 
 	    ON ben.name=dis.parent
+
 		where dis.state=0 and det.type=%s and dis.aid_decision_date=%s  and det.aid_no=dis.aid_no
 	
 		GROUP BY det.parent, dis.aid_decision_date,det.amount,det.item_code
 		  """, filters, as_dict=True)
-		frappe.msgprint(frappe.as_json(x))
+		# frappe.msgprint(frappe.as_json(x))
 		return x
 
 	def fill_material_aid(self):
@@ -161,8 +129,9 @@ class BeneficiaryAidsEntry(AccountsController):
 	def update_deserve_check(self):
 		for item in self.get('items'):
 			filters=[item.beneficiary,item.aid_decision_date,item.type]
-			frappe.db.sql("""UPDATE `tabDisplay Aids` set state=1 where parent=%s and aid_decision_date=%s and type=%s"""
+			frappe.db.sql("""UPDATE `tabDisplay Aids` set state=1 where parent=%s and aid_decision_date=%s and type=%s """
 			 ,filters)
+			
 		
 
 	def validate_item_code_and_warehouse(self):

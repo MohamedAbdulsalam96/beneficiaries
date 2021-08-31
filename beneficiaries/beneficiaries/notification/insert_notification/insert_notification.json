@@ -1,7 +1,7 @@
 {
  "attach_print": 0,
  "channel": "Email",
- "condition": "doc.gender==\"\u0630\u0643\u0631\"",
+ "condition": "",
  "creation": "2021-07-11 16:39:01.682348",
  "days_in_advance": 0,
  "docstatus": 0,
@@ -12,15 +12,17 @@
  "idx": 0,
  "is_standard": 1,
  "message": "Dear, Officer\n\nPlease find the new request for {{doc.beneficiary_name}}",
- "modified": "2021-07-11 16:45:01.016851",
- "modified_by": "Administrator",
+ "modified": "2021-08-23 11:07:49.217577",
+ "modified_by": "support-team@partner-cons.com",
  "module": "Beneficiaries",
  "name": "Insert Notification",
  "owner": "Administrator",
  "recipients": [
   {
-   "email_by_role": "Complaints Officer"
+   "email_by_role": "Separation Employee"
   }
  ],
+ "sender": "BER ERP System",
+ "sender_email": "erp@ber.org.sa",
  "subject": "{{doc.beneficiary_name}}"
 }

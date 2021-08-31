@@ -13,20 +13,19 @@
   "paid_every",
   "way_of_pay",
   "reason_of_obligation",
-  "attach"
+  "attach",
+  "file_no"
  ],
  "fields": [
   {
    "fieldname": "obligation_to",
    "fieldtype": "Data",
-   "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Obligation To"
   },
   {
    "fieldname": "amount",
    "fieldtype": "Currency",
-   "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Amount",
    "options": "currency_name"
@@ -34,14 +33,12 @@
   {
    "fieldname": "attach",
    "fieldtype": "Attach",
-   "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Attachment Of Obligation"
   },
   {
    "fieldname": "beneficiary_obligation",
    "fieldtype": "Link",
-   "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Beneficiary Obligation",
    "options": "Obligation"
@@ -49,28 +46,24 @@
   {
    "fieldname": "number_of_pays",
    "fieldtype": "Int",
-   "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Number of Pays"
   },
   {
    "fieldname": "way_of_pay",
    "fieldtype": "Data",
-   "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Way Of Pay"
   },
   {
    "fieldname": "reason_of_obligation",
    "fieldtype": "Data",
-   "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Reason Of Obligation"
   },
   {
    "fieldname": "column_break_5",
-   "fieldtype": "Column Break",
-   "ignore_user_permissions": 1
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "date_of_pay",
@@ -81,11 +74,16 @@
    "fieldname": "paid_every",
    "fieldtype": "Int",
    "label": "Paid Every (In Month)"
+  },
+  {
+   "fieldname": "file_no",
+   "fieldtype": "Data",
+   "label": "File No"
   }
  ],
  "istable": 1,
- "modified": "2021-08-17 11:32:12.784589",
- "modified_by": "Administrator",
+ "modified": "2021-08-26 10:15:18.121901",
+ "modified_by": "support-team@partner-cons.com",
  "module": "Beneficiaries",
  "name": "Beneficiary Obligation",
  "owner": "Administrator",

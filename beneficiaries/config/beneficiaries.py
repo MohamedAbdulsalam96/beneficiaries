@@ -68,24 +68,38 @@ def get_data():
 					"description":_("Beneficiary Request"),
 					"onboard": 1,
 				},
-				{
-					"type": "doctype",
-					"name": "Aid Renewal",
-					"description":_("Aid Renewal"),
-					"onboard": 1,
-				},
+				
 				{
 					"type": "doctype",
 					"name": "Beneficiary",
 					"description":_("Beneficiary"),
 					"onboard": 1,
 				},
+				{
+					"type": "doctype",
+					"name": "Status of Beneficiary Family",
+					"description":_("Status of Beneficiary Family"),
+					"onboard": 1,
+				},
+				{
+					"type": "doctype",
+					"name": "Material Status",
+					"description":_("Material Status"),
+					"onboard": 1,
+				}
+				
 								
 			]
 		},
 		{
 			"label": _("Decision"),
 			"items": [
+				{
+					"type": "doctype",
+					"name": "Beneficiary Aid",
+					"description":_("Beneficiary Aid"),
+					"onboard": 1,
+				},
 			
 				{
 					"type": "doctype",
@@ -93,18 +107,14 @@ def get_data():
 					"description":_("Beneficiary Aids Entry"),
 					"onboard": 1,
 				},
-					{
-					"type": "doctype",
-					"name": "Beneficiary logs",
-					"description":_("Beneficiary logs"),
-					"onboard": 1,
-				},
+					
 			{
 					"type": "doctype",
 					"name": "Beneficiary Aid Payment",
 					"description":_("Beneficiary Aid Payment"),
 					"onboard": 1,
 				},
+				
 								
 			]
 		},
